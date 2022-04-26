@@ -247,6 +247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: MainMenu
+  themeName: 
 --- !u!1 &389752931
 GameObject:
   m_ObjectHideFlags: 0
@@ -626,6 +627,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: TheoryReader
+  themeName: "\u043E\u0441\u043D\u043E\u0432\u043D\u044B\u0435 \u043F\u043E\u043D\u044F\u0442\u0438\u044F"
 --- !u!1 &850404096
 GameObject:
   m_ObjectHideFlags: 0
@@ -682,7 +684,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 44b8bba2b5548464193e2f06f72c50a7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -832,6 +834,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: TheoryReader
+  themeName: "\u043F\u0435\u0440\u0432\u0438\u0447\u043D\u044B\u0435 \u0441\u0440\u0435\u0434\u0441\u0442\u0432\u0430"
 --- !u!1 &1820031851
 GameObject:
   m_ObjectHideFlags: 0
