@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 217513913}
   - component: {fileID: 217513912}
   m_Layer: 0
-  m_Name: button_text (4)
+  m_Name: answerButtonText1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u043E\u0442\u0432\u0435\u04422"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -305,7 +305,7 @@ GameObject:
   - component: {fileID: 289599696}
   - component: {fileID: 289599695}
   m_Layer: 0
-  m_Name: button_text (4)
+  m_Name: answerButtonText2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -350,7 +350,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u043E\u0442\u0432\u0435\u04423"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -475,7 +475,7 @@ GameObject:
   - component: {fileID: 519646791}
   - component: {fileID: 519646790}
   m_Layer: 0
-  m_Name: Question
+  m_Name: questionText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -501,7 +501,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0412\u043E\u043F\u0440\u043E\u0441"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -645,7 +645,7 @@ GameObject:
   - component: {fileID: 678171638}
   - component: {fileID: 678171637}
   m_Layer: 0
-  m_Name: button_text (4)
+  m_Name: answerButtonText0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -690,7 +690,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u043E\u0442\u0432\u0435\u04421"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -814,8 +814,9 @@ GameObject:
   - component: {fileID: 693191454}
   - component: {fileID: 693191453}
   - component: {fileID: 693191452}
+  - component: {fileID: 693191455}
   m_Layer: 0
-  m_Name: buttonAnswer (2)
+  m_Name: answerButton1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -913,6 +914,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &693191455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693191451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb2eff7dec9d86e479ad4d69ce429cea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  answerNumber: 1
 --- !u!1 &693471945
 GameObject:
   m_ObjectHideFlags: 0
@@ -924,8 +938,9 @@ GameObject:
   - component: {fileID: 693471948}
   - component: {fileID: 693471947}
   - component: {fileID: 693471946}
+  - component: {fileID: 693471949}
   m_Layer: 0
-  m_Name: buttonAnswer (3)
+  m_Name: answerButton2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1023,6 +1038,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &693471949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693471945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb2eff7dec9d86e479ad4d69ce429cea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  answerNumber: 2
 --- !u!1 &767907514
 GameObject:
   m_ObjectHideFlags: 0
@@ -1035,7 +1063,7 @@ GameObject:
   - component: {fileID: 767907517}
   - component: {fileID: 767907516}
   m_Layer: 0
-  m_Name: button_text (4)
+  m_Name: answerButtonText4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1080,7 +1108,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u043E\u0442\u0432\u0435\u04425"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1193,6 +1221,62 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &909851650
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 909851652}
+  - component: {fileID: 909851651}
+  m_Layer: 0
+  m_Name: TestManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &909851651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909851650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc078baf16192b84393fd98296ed4bae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questionText: {fileID: 519646790}
+  answerButtonText0: {fileID: 678171637}
+  answerButtonText1: {fileID: 217513912}
+  answerButtonText2: {fileID: 289599695}
+  answerButtonText3: {fileID: 1856804465}
+  answerButtonText4: {fileID: 767907516}
+  answerButtonText5: {fileID: 1111865270}
+  answerButton0: {fileID: 1130911603}
+  answerButton1: {fileID: 693191451}
+  answerButton2: {fileID: 693471945}
+  answerButton3: {fileID: 1045695448}
+  answerButton4: {fileID: 971827246}
+  answerButton5: {fileID: 995297475}
+--- !u!4 &909851652
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909851650}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.2, y: -3.8000002, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &971827246
 GameObject:
   m_ObjectHideFlags: 0
@@ -1204,8 +1288,9 @@ GameObject:
   - component: {fileID: 971827249}
   - component: {fileID: 971827248}
   - component: {fileID: 971827247}
+  - component: {fileID: 971827250}
   m_Layer: 0
-  m_Name: buttonAnswer (5)
+  m_Name: answerButton4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1303,6 +1388,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &971827250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 971827246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb2eff7dec9d86e479ad4d69ce429cea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  answerNumber: 4
 --- !u!1 &995297475
 GameObject:
   m_ObjectHideFlags: 0
@@ -1314,8 +1412,9 @@ GameObject:
   - component: {fileID: 995297478}
   - component: {fileID: 995297477}
   - component: {fileID: 995297476}
+  - component: {fileID: 995297479}
   m_Layer: 0
-  m_Name: buttonAnswer (6)
+  m_Name: answerButton5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1413,6 +1512,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &995297479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 995297475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb2eff7dec9d86e479ad4d69ce429cea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  answerNumber: 5
 --- !u!1 &1045695448
 GameObject:
   m_ObjectHideFlags: 0
@@ -1424,8 +1536,9 @@ GameObject:
   - component: {fileID: 1045695451}
   - component: {fileID: 1045695450}
   - component: {fileID: 1045695449}
+  - component: {fileID: 1045695452}
   m_Layer: 0
-  m_Name: buttonAnswer (4)
+  m_Name: answerButton3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1523,6 +1636,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1045695452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045695448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb2eff7dec9d86e479ad4d69ce429cea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  answerNumber: 3
 --- !u!1 &1111865268
 GameObject:
   m_ObjectHideFlags: 0
@@ -1535,7 +1661,7 @@ GameObject:
   - component: {fileID: 1111865271}
   - component: {fileID: 1111865270}
   m_Layer: 0
-  m_Name: button_text (4)
+  m_Name: answerButtonText5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1580,7 +1706,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u043E\u0442\u0432\u0435\u04426"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1704,8 +1830,9 @@ GameObject:
   - component: {fileID: 1130911607}
   - component: {fileID: 1130911606}
   - component: {fileID: 1130911604}
+  - component: {fileID: 1130911605}
   m_Layer: 0
-  m_Name: buttonAnswer (1)
+  m_Name: answerButton0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1737,6 +1864,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 7.66, y: 0.95}
   m_EdgeRadius: 0
+--- !u!114 &1130911605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1130911603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb2eff7dec9d86e479ad4d69ce429cea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  answerNumber: 0
 --- !u!212 &1130911606
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1816,7 +1956,7 @@ GameObject:
   - component: {fileID: 1244741616}
   - component: {fileID: 1244741615}
   m_Layer: 0
-  m_Name: buttonAnswerConfirm
+  m_Name: confirmAnswerButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1940,7 +2080,7 @@ GameObject:
   - component: {fileID: 1733234629}
   - component: {fileID: 1733234628}
   m_Layer: 0
-  m_Name: button_text (4)
+  m_Name: confirmButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2110,7 +2250,7 @@ GameObject:
   - component: {fileID: 1856804466}
   - component: {fileID: 1856804465}
   m_Layer: 0
-  m_Name: button_text (4)
+  m_Name: answerButtonText3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2155,7 +2295,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u043E\u0442\u0432\u0435\u04424"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
