@@ -6,6 +6,6 @@ public class ButtonAnswerConfirm : MonoBehaviour
 {
     void OnMouseDown()
     {
-        TestManager.instance.CheckAnswer();
+        TestManager.instance.FinishQuestion();
     }
 }

@@ -32,4 +32,10 @@ public class ButtonTestAnswerScript : MonoBehaviour
             m_SpriteRenderer.color = new Color(1, 1, 1);
         }
     }
+
+    public void UnpressButton()
+    {
+        isPressed = false;
+        m_SpriteRenderer.color = new Color(1, 1, 1);
+    }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class TestManager : MonoBehaviour
 {
@@ -11,9 +12,11 @@ public class TestManager : MonoBehaviour
     public TMP_Text[] answerButtonTexts;
     public GameObject[] answerButtons;
 
-    Question[] questions;
+    public Question[] questions;
     string theme;
-    Question activeQuestion;
+    int questionCounter = 0;
+    public int correctAnswerCounter = 0;
+    public double score;
 
     void Start()
     {
@@ -29,11 +32,10 @@ public class TestManager : MonoBehaviour
 
         //vremennaya testovaya hren'
         ChooseTheme(IntersceneMemory.instance.themeName);
-        activeQuestion = questions[3];
-        ShowQuestion();
+        ShowQuestion(questions[questionCounter]);
     }
 
-    void ShowQuestion()
+    void ShowQuestion(Question activeQuestion)
     {
         questionText.text = activeQuestion.question;
         answerButtonTexts[0].text = activeQuestion.answers[0].answerText;
@@ -53,17 +55,67 @@ public class TestManager : MonoBehaviour
         }
     }
 
-    public void CheckAnswer()
+    public void FinishQuestion()
     {
-        int mistakesNumber = 0;
-        for (int i = 0; i < activeQuestion.answers.Length; i++)
+        double addToScore = 0;
+
+        double correctAnswersChosen = 0;
+        double correctAnswersNotChosen = 0;
+        double incorrectAnswersChosen = 0;
+        double incorrectAnswersNotChosen = 0;
+
+        for (int i = 0; i < questions[questionCounter].answers.Length; i++)
         {
-            if (activeQuestion.answers[i].isCorrect != answerButtons[i].GetComponent<ButtonTestAnswerScript>().isPressed)
+            if (questions[questionCounter].answers[i].isCorrect && answerButtons[i].GetComponent<ButtonTestAnswerScript>().isPressed)
             {
-                mistakesNumber++;
-            }            
+                correctAnswersChosen++;
+            }
+            if (questions[questionCounter].answers[i].isCorrect && !answerButtons[i].GetComponent<ButtonTestAnswerScript>().isPressed)
+            {
+                correctAnswersNotChosen++;
+            }
+            if (!questions[questionCounter].answers[i].isCorrect && answerButtons[i].GetComponent<ButtonTestAnswerScript>().isPressed)
+            {
+                incorrectAnswersChosen++;
+            }
+            if (!questions[questionCounter].answers[i].isCorrect && !answerButtons[i].GetComponent<ButtonTestAnswerScript>().isPressed)
+            {
+                incorrectAnswersNotChosen++;
+            }
         }
-        Debug.Log(mistakesNumber);
+
+        addToScore += (correctAnswersChosen - incorrectAnswersChosen) /
+            (correctAnswersChosen + correctAnswersNotChosen);
+        if (addToScore < 0)
+        {
+            addToScore = 0;
+        }
+        score += addToScore;
+
+        if (addToScore == 1)
+        {
+            correctAnswerCounter++;
+        }
+
+        NextQuestion();
+    }
+
+    void NextQuestion()
+    {
+        for (int i = 0; i < answerButtons.Length; i++)
+        {
+            answerButtons[i].GetComponent<ButtonTestAnswerScript>().UnpressButton();
+        }
+
+        if (questionCounter + 1 < questions.Length)
+        {
+            questionCounter++;
+            ShowQuestion(questions[questionCounter]);
+        }
+        else
+        {
+            SceneManager.LoadScene("TestResults");
+        }
     }
 
     //ниже идут списки тем, вопросов, ответов. лучше их не мешать с прочими методами.
