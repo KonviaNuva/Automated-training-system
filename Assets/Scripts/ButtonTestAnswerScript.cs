@@ -5,28 +5,31 @@ using UnityEngine;
 public class ButtonTestAnswerScript : MonoBehaviour
 {
     public int answerNumber;
+    public bool isPressed { private set; get; }
 
     SpriteRenderer m_SpriteRenderer;
 
     private void Start()
     {
+        isPressed = false;
         m_SpriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void OnMouseDown()
     {
-        Debug.Log("button " + answerNumber + " is pressed");
-        TestManager.instance.PressButton(answerNumber);
-        MarkAsChosen();
+        isPressed = !isPressed;
+        MarkButton();
     }
 
-    public void MarkAsChosen()
+    public void MarkButton()
     {
-        m_SpriteRenderer.color = new Color(0, 0, 128, (float)0.2);
-    }
-
-    public void MarkAsUnchosen()
-    {
-        m_SpriteRenderer.color = new Color(0, 0, 0);
+        if (isPressed)
+        {
+            m_SpriteRenderer.color = new Color(0, 0, 1, (float)0.2);
+        }
+        else
+        {
+            m_SpriteRenderer.color = new Color(1, 1, 1);
+        }
     }
 }

@@ -8,23 +8,12 @@ public class TestManager : MonoBehaviour
     public static TestManager instance = null;
 
     public TMP_Text questionText;
-    public TMP_Text answerButtonText0;
-    public TMP_Text answerButtonText1;
-    public TMP_Text answerButtonText2;
-    public TMP_Text answerButtonText3;
-    public TMP_Text answerButtonText4;
-    public TMP_Text answerButtonText5;
-    public GameObject answerButton0;
-    public GameObject answerButton1;
-    public GameObject answerButton2;
-    public GameObject answerButton3;
-    public GameObject answerButton4;
-    public GameObject answerButton5;
+    public TMP_Text[] answerButtonTexts;
+    public GameObject[] answerButtons;
 
     Question[] questions;
     string theme;
     Question activeQuestion;
-    bool[] isAnswerChosen;
 
     void Start()
     {
@@ -42,61 +31,26 @@ public class TestManager : MonoBehaviour
         ChooseTheme(IntersceneMemory.instance.themeName);
         activeQuestion = questions[3];
         ShowQuestion();
-
-        isAnswerChosen = new bool[] { false, false, false, false, false, false };
     }
 
     void ShowQuestion()
     {
         questionText.text = activeQuestion.question;
-        answerButtonText0.text = activeQuestion.answers[0].answerText;
-        answerButtonText1.text = activeQuestion.answers[1].answerText;
-        if (activeQuestion.answers.Length >= 3)
-        {
-            answerButton2.SetActive(true);
-            answerButtonText2.text = activeQuestion.answers[2].answerText;
-        }
-        else
-        {
-            answerButton2.SetActive(false);
-        }
-        if (activeQuestion.answers.Length >= 4)
-        {
-            answerButton3.SetActive(true);
-            answerButtonText3.text = activeQuestion.answers[3].answerText;
-        }
-        else
-        {
-            answerButton3.SetActive(false);
-        }
-        if (activeQuestion.answers.Length >= 5)
-        {
-            answerButton4.SetActive(true);
-            answerButtonText4.text = activeQuestion.answers[4].answerText;
-        }
-        else
-        {
-            answerButton4.SetActive(false);
-        }
-        if (activeQuestion.answers.Length >= 6)
-        {
-            answerButton5.SetActive(true);
-            answerButtonText5.text = activeQuestion.answers[5].answerText;
-        }
-        else
-        {
-            answerButton5.SetActive(false);
-        }
-    }
+        answerButtonTexts[0].text = activeQuestion.answers[0].answerText;
+        answerButtonTexts[1].text = activeQuestion.answers[1].answerText;
 
-    public void PressButton(int answerNumber)
-    {
-        //вызывается кнопками, со стороны. сигнализирует о том, что кнопка с определенным номером была нажата. ну или в случае если 
-        //она уже была нажата - стала отжата. в любом случае, это надо отметить в отдельном массиве, чтобы помнить, какие варианты 
-        //ответа пользователь выбрал.
-
-        isAnswerChosen[answerNumber] = !isAnswerChosen[answerNumber];
-        Debug.Log("answer number " + answerNumber + " being chosen is " + isAnswerChosen[answerNumber] + " now");
+        for (int i = 2; i <= 5; i++)
+        {
+            if (activeQuestion.answers.Length >= i+1)
+            {
+                answerButtons[i].SetActive(true);
+                answerButtonTexts[i].text = activeQuestion.answers[i].answerText;
+            }
+            else
+            {
+                answerButtons[i].SetActive(false);
+            }
+        }
     }
 
     //ниже идут списки тем, вопросов, ответов. лучше их не мешать с прочими методами.
@@ -141,7 +95,7 @@ public class TestManager : MonoBehaviour
             "wrong answer2", false,
             "wrong answer3", false),
 
-            new Question("vopros3 theme1",
+            new Question("vopros4 theme1",
             "right answer", true,
             "right answer2", true,
             "wrong answer", false,

@@ -1263,6 +1263,20 @@ MonoBehaviour:
   answerButton3: {fileID: 1045695448}
   answerButton4: {fileID: 971827246}
   answerButton5: {fileID: 995297475}
+  answerButtonTexts:
+  - {fileID: 678171637}
+  - {fileID: 217513912}
+  - {fileID: 289599695}
+  - {fileID: 1856804465}
+  - {fileID: 767907516}
+  - {fileID: 1111865270}
+  answerButtons:
+  - {fileID: 1130911603}
+  - {fileID: 693191451}
+  - {fileID: 693471945}
+  - {fileID: 1045695448}
+  - {fileID: 971827246}
+  - {fileID: 995297475}
 --- !u!4 &909851652
 Transform:
   m_ObjectHideFlags: 0
