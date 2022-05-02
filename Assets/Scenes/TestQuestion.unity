@@ -1251,18 +1251,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   questionText: {fileID: 519646790}
-  answerButtonText0: {fileID: 678171637}
-  answerButtonText1: {fileID: 217513912}
-  answerButtonText2: {fileID: 289599695}
-  answerButtonText3: {fileID: 1856804465}
-  answerButtonText4: {fileID: 767907516}
-  answerButtonText5: {fileID: 1111865270}
-  answerButton0: {fileID: 1130911603}
-  answerButton1: {fileID: 693191451}
-  answerButton2: {fileID: 693471945}
-  answerButton3: {fileID: 1045695448}
-  answerButton4: {fileID: 971827246}
-  answerButton5: {fileID: 995297475}
   answerButtonTexts:
   - {fileID: 678171637}
   - {fileID: 217513912}
@@ -1985,11 +1973,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1244741614}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cc28e36fb0d57444a1359b9f9927e04, type: 3}
+  m_Script: {fileID: 11500000, guid: 999d59a2a18238743ae6759214b4e8ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: TestResults
-  themeName: 
 --- !u!61 &1244741616
 BoxCollider2D:
   m_ObjectHideFlags: 0

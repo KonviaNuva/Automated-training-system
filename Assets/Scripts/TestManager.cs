@@ -53,6 +53,19 @@ public class TestManager : MonoBehaviour
         }
     }
 
+    public void CheckAnswer()
+    {
+        int mistakesNumber = 0;
+        for (int i = 0; i < activeQuestion.answers.Length; i++)
+        {
+            if (activeQuestion.answers[i].isCorrect != answerButtons[i].GetComponent<ButtonTestAnswerScript>().isPressed)
+            {
+                mistakesNumber++;
+            }            
+        }
+        Debug.Log(mistakesNumber);
+    }
+
     //ниже идут списки тем, вопросов, ответов. лучше их не мешать с прочими методами.
 
     public void ChooseTheme(string inputTheme)
