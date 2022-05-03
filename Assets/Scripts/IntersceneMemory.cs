@@ -6,7 +6,10 @@ using UnityEngine.SceneManagement;
 public class IntersceneMemory : MonoBehaviour
 {
     public static IntersceneMemory instance;
+
     public string themeName;
+    public int coins;
+    testRecord[] testRecords;
 
     // Start is called before the first frame update
     void Start()
@@ -15,4 +18,10 @@ public class IntersceneMemory : MonoBehaviour
         DontDestroyOnLoad(transform.gameObject);
         SceneManager.LoadScene("MainMenu");
     }
+}
+
+public class testRecord
+{
+    public string testName;
+    public int stars;
 }
