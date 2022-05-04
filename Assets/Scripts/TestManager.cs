@@ -31,8 +31,10 @@ public class TestManager : MonoBehaviour
         DontDestroyOnLoad(transform.gameObject);
 
         //vremennaya testovaya hren'
-        ChooseTheme(IntersceneMemory.instance.themeName);
+        ChooseTheme(IntersceneMemory.instance.themeIndex);
         ShowQuestion(questions[questionCounter]);
+
+        NumberShuffle(7, 5);
     }
 
     void ShowQuestion(Question activeQuestion)
@@ -118,18 +120,53 @@ public class TestManager : MonoBehaviour
         }
     }
 
+
+    static int[] NumberShuffle(int originalLength, int shuffledLength) 
+        //принимает длину оригинального массива и длину нужного массива. Выдает индексы в случайном порядке, перетасованные
+    {
+        int[] originalArray = new int[originalLength];
+        int[] shuffledArray = new int[shuffledLength];
+
+        for (int i = 0; i < originalArray.Length; i++)
+        {
+            originalArray[i] = i;
+        }
+
+        int index = 0;
+        for (int i = 0; i < shuffledArray.Length; i++)
+        {
+            index += Random.Range(0, originalArray.Length - 1);
+            if (index >= originalArray.Length)
+            {
+                index -= originalArray.Length;
+            }
+
+            while (originalArray[index] == -1)
+            {
+                index++;
+                if (index >= originalArray.Length)
+                {
+                    index -= originalArray.Length;
+                }
+            }
+
+            shuffledArray[i] = originalArray[index];
+            originalArray[index] = -1;
+        }
+
+        return shuffledArray;
+    }
+
     //ниже идут списки тем, вопросов, ответов. лучше их не мешать с прочими методами.
 
-    public void ChooseTheme(string inputTheme)
+    public void ChooseTheme(int themeIndex)
     {
-        theme = inputTheme;
-
-        switch (theme)
+        switch (themeIndex)
         {
-            case "основные понятия":
+            case 0:
                 ChooseThemeOsnovniePoniatia();
                 break;
-            case "первичные средства":
+            case 1:
                 ChooseThemePervichnieSredstva();
                 break;
         }

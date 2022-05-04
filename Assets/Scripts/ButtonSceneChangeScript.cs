@@ -6,11 +6,11 @@ using UnityEngine.SceneManagement;
 public class ButtonSceneChangeScript : MonoBehaviour
 {
     public string sceneName;
-    public string themeName;
+    public int themeIndex;
 
     void OnMouseDown()
     {
-        IntersceneMemory.instance.themeName = this.themeName;
+        IntersceneMemory.instance.themeIndex = this.themeIndex;
         SceneManager.LoadScene(sceneName);
     }
 }

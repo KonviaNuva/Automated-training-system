@@ -7,9 +7,10 @@ public class IntersceneMemory : MonoBehaviour
 {
     public static IntersceneMemory instance;
 
-    public string themeName;
+    public int themeIndex;
     public int coins;
     testRecord[] testRecords;
+    string[] themes;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,12 @@ public class IntersceneMemory : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(transform.gameObject);
         SceneManager.LoadScene("MainMenu");
+
+        themes = new string[]
+        {
+            "основные понятия",
+            "первичные средства"
+        };
     }
 }
 

@@ -18,12 +18,12 @@ public class SlideManager : MonoBehaviour
     {
         instance = this;
 
-        switch (IntersceneMemory.instance.themeName)
+        switch (IntersceneMemory.instance.themeIndex)
         {
-            case ("основные понятия"):
+            case 0:
                 chosenTheme = osnovnie_poniatia;
                 break;
-            case ("первичные средства"):
+            case 1:
                 chosenTheme = pervichnie_sredstva;
                 break;
         }

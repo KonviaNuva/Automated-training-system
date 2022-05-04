@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: TestQuestion
-  themeName: "\u043E\u0441\u043D\u043E\u0432\u043D\u044B\u0435 \u043F\u043E\u043D\u044F\u0442\u0438\u044F"
+  themeIndex: 0
 --- !u!61 &316829674
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -957,7 +957,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: MainMenu
-  themeName: 
+  themeIndex: 0
 --- !u!61 &1410545052
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1082,7 +1082,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: TestQuestion
-  themeName: "\u043F\u0435\u0440\u0432\u0438\u0447\u043D\u044B\u0435 \u0441\u0440\u0435\u0434\u0441\u0442\u0432\u0430"
+  themeIndex: 1
 --- !u!61 &1469991892
 BoxCollider2D:
   m_ObjectHideFlags: 0
