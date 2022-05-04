@@ -12,6 +12,7 @@ public class TestManager : MonoBehaviour
     public TMP_Text[] answerButtonTexts;
     public GameObject[] answerButtons;
 
+    public int questionNumber = 4;
     public Question[] questions;
     public int[] indexes;
     string theme;
@@ -31,10 +32,9 @@ public class TestManager : MonoBehaviour
         }
         DontDestroyOnLoad(transform.gameObject);
 
+        indexes = NumberShuffle(questionNumber, questionNumber);
 
-        GetQuestions(IntersceneMemory.instance.themeIndex);
-
-        indexes = NumberShuffle(4, questions.Length);
+        questions = GetQuestions(IntersceneMemory.instance.themeIndex);
 
         ShowQuestion(questions[questionCounter]);
     }
@@ -68,21 +68,21 @@ public class TestManager : MonoBehaviour
         double incorrectAnswersChosen = 0;
         double incorrectAnswersNotChosen = 0;
 
-        for (int i = 0; i < questions[indexes[questionCounter]].answers.Length; i++)
+        for (int i = 0; i < questions[questionCounter].answers.Length; i++)
         {
-            if (questions[indexes[questionCounter]].answers[i].isCorrect && answerButtons[i].GetComponent<ButtonTestAnswerScript>().isPressed)
+            if (questions[questionCounter].answers[i].isCorrect && answerButtons[i].GetComponent<ButtonTestAnswerScript>().isPressed)
             {
                 correctAnswersChosen++;
             }
-            if (questions[indexes[questionCounter]].answers[i].isCorrect && !answerButtons[i].GetComponent<ButtonTestAnswerScript>().isPressed)
+            if (questions[questionCounter].answers[i].isCorrect && !answerButtons[i].GetComponent<ButtonTestAnswerScript>().isPressed)
             {
                 correctAnswersNotChosen++;
             }
-            if (!questions[indexes[questionCounter]].answers[i].isCorrect && answerButtons[i].GetComponent<ButtonTestAnswerScript>().isPressed)
+            if (!questions[questionCounter].answers[i].isCorrect && answerButtons[i].GetComponent<ButtonTestAnswerScript>().isPressed)
             {
                 incorrectAnswersChosen++;
             }
-            if (!questions[indexes[questionCounter]].answers[i].isCorrect && !answerButtons[i].GetComponent<ButtonTestAnswerScript>().isPressed)
+            if (!questions[questionCounter].answers[i].isCorrect && !answerButtons[i].GetComponent<ButtonTestAnswerScript>().isPressed)
             {
                 incorrectAnswersNotChosen++;
             }
@@ -114,7 +114,7 @@ public class TestManager : MonoBehaviour
         if (questionCounter + 1 < questions.Length)
         {
             questionCounter++;
-            ShowQuestion(questions[indexes[questionCounter]]);
+            ShowQuestion(questions[questionCounter]);
         }
         else
         {
@@ -161,9 +161,17 @@ public class TestManager : MonoBehaviour
 
     //ниже идут списки тем, вопросов, ответов. лучше их не мешать с прочими методами.
 
-    public void GetQuestions(int themeIndex)
+    public Question[] GetQuestions(int themeIndex)
     {
-        questions = allQuestions[themeIndex];
+        Question[] shuffledQuestions = new Question[questionNumber];
+
+        for (int i = 0; i < questionNumber; i++)
+        {
+            shuffledQuestions[i] = allQuestions[themeIndex][indexes[i]];
+        }
+
+        
+        return shuffledQuestions;
     }
 
     Question[][] allQuestions = new Question[][]

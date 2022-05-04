@@ -35,7 +35,14 @@ public class ButtonTestAnswerScript : MonoBehaviour
 
     public void UnpressButton()
     {
-        isPressed = false;
-        m_SpriteRenderer.color = new Color(1, 1, 1);
+        isPressed = false;        
+    }
+
+    private void Update()
+    {
+        if (!isPressed)
+        {
+            m_SpriteRenderer.color = new Color(1, 1, 1);
+        }
     }
 }
