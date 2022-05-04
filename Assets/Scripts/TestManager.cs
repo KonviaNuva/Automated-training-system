@@ -13,6 +13,7 @@ public class TestManager : MonoBehaviour
     public GameObject[] answerButtons;
 
     public Question[] questions;
+    public int[] indexes;
     string theme;
     int questionCounter = 0;
     public int correctAnswerCounter = 0;
@@ -21,20 +22,21 @@ public class TestManager : MonoBehaviour
     void Start()
     {
         if (instance == null)
-        { 
-            instance = this; 
+        {
+            instance = this;
         }
-        else 
-        { 
+        else
+        {
             Destroy(gameObject);
         }
         DontDestroyOnLoad(transform.gameObject);
 
-        //vremennaya testovaya hren'
-        ChooseTheme(IntersceneMemory.instance.themeIndex);
-        ShowQuestion(questions[questionCounter]);
 
-        NumberShuffle(7, 5);
+        GetQuestions(IntersceneMemory.instance.themeIndex);
+
+        indexes = NumberShuffle(4, questions.Length);
+
+        ShowQuestion(questions[questionCounter]);
     }
 
     void ShowQuestion(Question activeQuestion)
@@ -45,7 +47,7 @@ public class TestManager : MonoBehaviour
 
         for (int i = 2; i <= 5; i++)
         {
-            if (activeQuestion.answers.Length >= i+1)
+            if (activeQuestion.answers.Length >= i + 1)
             {
                 answerButtons[i].SetActive(true);
                 answerButtonTexts[i].text = activeQuestion.answers[i].answerText;
@@ -66,21 +68,21 @@ public class TestManager : MonoBehaviour
         double incorrectAnswersChosen = 0;
         double incorrectAnswersNotChosen = 0;
 
-        for (int i = 0; i < questions[questionCounter].answers.Length; i++)
+        for (int i = 0; i < questions[indexes[questionCounter]].answers.Length; i++)
         {
-            if (questions[questionCounter].answers[i].isCorrect && answerButtons[i].GetComponent<ButtonTestAnswerScript>().isPressed)
+            if (questions[indexes[questionCounter]].answers[i].isCorrect && answerButtons[i].GetComponent<ButtonTestAnswerScript>().isPressed)
             {
                 correctAnswersChosen++;
             }
-            if (questions[questionCounter].answers[i].isCorrect && !answerButtons[i].GetComponent<ButtonTestAnswerScript>().isPressed)
+            if (questions[indexes[questionCounter]].answers[i].isCorrect && !answerButtons[i].GetComponent<ButtonTestAnswerScript>().isPressed)
             {
                 correctAnswersNotChosen++;
             }
-            if (!questions[questionCounter].answers[i].isCorrect && answerButtons[i].GetComponent<ButtonTestAnswerScript>().isPressed)
+            if (!questions[indexes[questionCounter]].answers[i].isCorrect && answerButtons[i].GetComponent<ButtonTestAnswerScript>().isPressed)
             {
                 incorrectAnswersChosen++;
             }
-            if (!questions[questionCounter].answers[i].isCorrect && !answerButtons[i].GetComponent<ButtonTestAnswerScript>().isPressed)
+            if (!questions[indexes[questionCounter]].answers[i].isCorrect && !answerButtons[i].GetComponent<ButtonTestAnswerScript>().isPressed)
             {
                 incorrectAnswersNotChosen++;
             }
@@ -112,7 +114,7 @@ public class TestManager : MonoBehaviour
         if (questionCounter + 1 < questions.Length)
         {
             questionCounter++;
-            ShowQuestion(questions[questionCounter]);
+            ShowQuestion(questions[indexes[questionCounter]]);
         }
         else
         {
@@ -121,8 +123,8 @@ public class TestManager : MonoBehaviour
     }
 
 
-    static int[] NumberShuffle(int originalLength, int shuffledLength) 
-        //принимает длину оригинального массива и длину нужного массива. Выдает индексы в случайном порядке, перетасованные
+    static int[] NumberShuffle(int shuffledLength, int originalLength)
+    //принимает длину нужного массива и длину оригинального массива. Выдает индексы в случайном порядке, перетасованные
     {
         int[] originalArray = new int[originalLength];
         int[] shuffledArray = new int[shuffledLength];
@@ -159,22 +161,14 @@ public class TestManager : MonoBehaviour
 
     //ниже идут списки тем, вопросов, ответов. лучше их не мешать с прочими методами.
 
-    public void ChooseTheme(int themeIndex)
+    public void GetQuestions(int themeIndex)
     {
-        switch (themeIndex)
-        {
-            case 0:
-                ChooseThemeOsnovniePoniatia();
-                break;
-            case 1:
-                ChooseThemePervichnieSredstva();
-                break;
-        }
+        questions = allQuestions[themeIndex];
     }
 
-    void ChooseThemeOsnovniePoniatia()
+    Question[][] allQuestions = new Question[][]
     {
-        questions = new Question[]
+        new Question[]
         {
             new Question("vopros theme1",
             "right answer", true,
@@ -203,12 +197,8 @@ public class TestManager : MonoBehaviour
             "wrong answer", false,
             "wrong answer2", false,
             "wrong answer3", false),
-        };
-    }
-
-    void ChooseThemePervichnieSredstva()
-    {
-        questions = new Question[]
+        },
+        new Question[]
         {
             new Question("vopros theme2",
             "right answer", true,
@@ -241,8 +231,8 @@ public class TestManager : MonoBehaviour
             "wrong answer3", false,
             "wrong answer4", false,
             "wrong answer5", false),
-        };
-    }
+        }
+    };
 }
 
 public class Question
@@ -256,12 +246,12 @@ public class Question
         answers = inputAnswers;
     }
 
-    public Question(string inputQuestion, string answer1, bool isCorrect1, string answer2, bool isCorrect2, 
+    public Question(string inputQuestion, string answer1, bool isCorrect1, string answer2, bool isCorrect2,
         string answer3, bool isCorrect3, string answer4, bool isCorrect4)
     {
         question = inputQuestion;
         answers = new Answer[] { new Answer(answer1, isCorrect1), new Answer(answer2, isCorrect2),
-            new Answer(answer3, isCorrect3), new Answer(answer4, isCorrect4) };
+        new Answer(answer3, isCorrect3), new Answer(answer4, isCorrect4) };
     }
 
     public Question(string inputQuestion, string answer1, bool isCorrect1, string answer2, bool isCorrect2,
@@ -269,28 +259,28 @@ public class Question
     {
         question = inputQuestion;
         answers = new Answer[] { new Answer(answer1, isCorrect1), new Answer(answer2, isCorrect2),
-            new Answer(answer3, isCorrect3), new Answer(answer4, isCorrect4), new Answer(answer5, isCorrect5) };
+        new Answer(answer3, isCorrect3), new Answer(answer4, isCorrect4), new Answer(answer5, isCorrect5) };
     }
 
     public Question(string inputQuestion, string answer1, bool isCorrect1, string answer2, bool isCorrect2,
-        string answer3, bool isCorrect3, string answer4, bool isCorrect4, string answer5, bool isCorrect5, 
+        string answer3, bool isCorrect3, string answer4, bool isCorrect4, string answer5, bool isCorrect5,
         string answer6, bool isCorrect6)
     {
         question = inputQuestion;
         answers = new Answer[] { new Answer(answer1, isCorrect1), new Answer(answer2, isCorrect2),
-            new Answer(answer3, isCorrect3), new Answer(answer4, isCorrect4), new Answer(answer5, isCorrect5),
-            new Answer(answer6, isCorrect6) };
+        new Answer(answer3, isCorrect3), new Answer(answer4, isCorrect4), new Answer(answer5, isCorrect5),
+        new Answer(answer6, isCorrect6) };
     }
 }
 
 public class Answer
-{
-    public string answerText;
-    public bool isCorrect;
-
-    public Answer(string inputAnswerText, bool inputIsCorrect)
     {
-        answerText = inputAnswerText;
-        isCorrect = inputIsCorrect;
+        public string answerText;
+        public bool isCorrect;
+
+        public Answer(string inputAnswerText, bool inputIsCorrect)
+        {
+            answerText = inputAnswerText;
+            isCorrect = inputIsCorrect;
+        }
     }
-}
