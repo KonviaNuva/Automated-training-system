@@ -14,11 +14,11 @@ public class TestManager : MonoBehaviour
 
     public int questionNumber = 4;
     public Question[] questions;
-    public int[] indexes;
     string theme;
     int questionCounter = 0;
     public int correctAnswerCounter = 0;
     public double score;
+
 
     void Start()
     {
@@ -31,8 +31,6 @@ public class TestManager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(transform.gameObject);
-
-        indexes = NumberShuffle(questionNumber, questionNumber);
 
         questions = GetQuestions(IntersceneMemory.instance.themeIndex);
 
@@ -159,18 +157,41 @@ public class TestManager : MonoBehaviour
         return shuffledArray;
     }
 
+    static Answer[] AnswerShuffle(Answer[] inputAnswerArray)
+    //принимает массив ответов. Выдает его же перетасованным
+    {
+        int[] indexes = NumberShuffle(inputAnswerArray.Length, inputAnswerArray.Length);
+        Answer[] shuffledAnswerArray = new Answer[inputAnswerArray.Length];
+
+        for (int i = 0; i < inputAnswerArray.Length; i++)
+        {
+            shuffledAnswerArray[i] = inputAnswerArray[indexes[i]];
+        }
+
+        return shuffledAnswerArray;
+    }
+
     //ниже идут списки тем, вопросов, ответов. лучше их не мешать с прочими методами.
 
     public Question[] GetQuestions(int themeIndex)
     {
+        int[] indexes = NumberShuffle(questionNumber, allQuestions[themeIndex].Length);
+
         Question[] shuffledQuestions = new Question[questionNumber];
 
-        for (int i = 0; i < questionNumber; i++)
+        for (int i = 0; i < shuffledQuestions.Length; i++)
         {
             shuffledQuestions[i] = allQuestions[themeIndex][indexes[i]];
         }
 
-        
+        //нужно сгенерировать массив массивов, содержащий перетасованные индексы для каждого ответа на каждый вопрос, 
+        //одновременно. а после этого уже в соответствии с индексами переставить все ответы в нужно порядке.
+
+        for (int i = 0; i < shuffledQuestions.Length; i++)
+        {
+            shuffledQuestions[i].answers = AnswerShuffle(shuffledQuestions[i].answers);
+        }
+
         return shuffledQuestions;
     }
 
