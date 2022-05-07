@@ -9,7 +9,7 @@ public class IntersceneMemory : MonoBehaviour
 
     public int themeIndex;
     public int coins;
-    testRecord[] testRecords;
+    public testHighscore[] testHighscores;
     string[] themes;
 
     // Start is called before the first frame update
@@ -24,10 +24,18 @@ public class IntersceneMemory : MonoBehaviour
             "основные понятия",
             "первичные средства"
         };
+
+        coins = 80;
+        testHighscores = new testHighscore[themes.Length];
+        for (int i = 0; i < testHighscores.Length; i++)
+        {
+            testHighscores[i] = new testHighscore();
+            testHighscores[i].stars = 1;
+        }
     }
 }
 
-public class testRecord
+public class testHighscore
 {
     public string testName;
     public int stars;
