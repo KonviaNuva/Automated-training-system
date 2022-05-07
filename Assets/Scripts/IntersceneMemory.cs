@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.IO;
 
 public class IntersceneMemory : MonoBehaviour
 {
@@ -25,12 +26,56 @@ public class IntersceneMemory : MonoBehaviour
             "первичные средства"
         };
 
-        coins = 80;
         testHighscores = new testHighscore[themes.Length];
         for (int i = 0; i < testHighscores.Length; i++)
         {
             testHighscores[i] = new testHighscore();
-            testHighscores[i].stars = 1;
+            testHighscores[i].stars = 0;
+        }
+
+        //DeleteUserData();
+        LoadUserData();
+    }
+
+    public void SaveUserData()
+    {
+        SaveData data = new SaveData();
+        data.saveCoins = coins;
+
+        data.stars = new int[testHighscores.Length];
+        for (int i = 0; i < data.stars.Length; i++)
+        {
+            data.stars[i] = testHighscores[i].stars;
+        }
+
+        string json = JsonUtility.ToJson(data);
+
+        File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
+    }
+
+    public void LoadUserData()
+    {
+        string path = Application.persistentDataPath + "/savefile.json";
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            SaveData data = JsonUtility.FromJson<SaveData>(json);
+            Debug.Log(json);
+
+            coins = data.saveCoins;
+            for (int i = 0; i < data.stars.Length; i++)
+            {
+                testHighscores[i].stars = data.stars[i];
+            }
+        }
+    }
+
+    public void DeleteUserData()
+    {
+        string path = Application.persistentDataPath + "/savefile.json";
+        if (File.Exists(path))
+        {
+            File.Delete(path);
         }
     }
 }
@@ -39,4 +84,11 @@ public class testHighscore
 {
     public string testName;
     public int stars;
+}
+
+[System.Serializable]
+class SaveData
+{
+    public int saveCoins;
+    public int[] stars;
 }

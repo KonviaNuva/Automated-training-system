@@ -11,14 +11,28 @@ public class TestResultManager : MonoBehaviour
     public TMP_Text starsCountText;
     public TMP_Text coinsCountText;
 
+    public int stars;
+    public int coins;
+
     private void Start()
     {
+        stars = (int)((TestManager.instance.score / TestManager.instance.questions.Length) * 5);
+        coins = (int)TestManager.instance.score * 10;
+
+        IntersceneMemory.instance.coins += this.coins;
+        if (IntersceneMemory.instance.testHighscores[IntersceneMemory.instance.themeIndex].stars < this.stars)
+        {
+            IntersceneMemory.instance.testHighscores[IntersceneMemory.instance.themeIndex].stars = this.stars;
+        }
+
         resultTitleText.text = "Ваш результат:";
         correctAnswersCountText.text = "Правильно дан ответ на вопросы: " + TestManager.instance.correctAnswerCounter + "/" 
             + TestManager.instance.questions.Length;
         pointsCountText.text = "Набрано баллов: " + TestManager.instance.score + "/"
             + TestManager.instance.questions.Length;
-        starsCountText.text = "Получено звезд: " + (int)((TestManager.instance.score/TestManager.instance.questions.Length) * 5);
-        coinsCountText.text = "Заработано монет: " + TestManager.instance.score * 10;
+        starsCountText.text = "Получено звезд: " + stars;
+        coinsCountText.text = "Заработано монет: " + coins;
+
+        IntersceneMemory.instance.SaveUserData();
     }
 }
