@@ -12,7 +12,7 @@ public class TestManager : MonoBehaviour
     public TMP_Text[] answerButtonTexts;
     public GameObject[] answerButtons;
 
-    public int questionNumber = 4;
+    public int questionNumber = 5;
     public Question[] questions;
     string theme;
     int questionCounter = 0;
@@ -199,7 +199,99 @@ public class TestManager : MonoBehaviour
     {
         new Question[]
         {
-            new Question("vopros theme1",
+            new Question("Пожар можно охарактеризовать как:",
+            "неконтролируемое горение, причиняющее различного рода ущерб.", true,
+            "контролируемое горение, причиняющее различного рода ущерб.", false,
+            "неконтролируемое горение, не причиняющее ущерба.", false,
+            "контролируемое горения, не причиняющее ущерба.", false),
+
+            new Question("Процесс горения можно охарактеризовать как:",
+            "экзотермическую химическую реакцию, прогрессирующе самоускоряющуюся.", true,
+            "эндотермическую химическую реакцию, прогрессирующе самоускоряющуюся.", false,
+            "экзотермическую химическую реакцию, прогрессирующе самозамедляющуюся.", false,
+            "эндотермическую химическую реакцию, прогрессирующе самозамедляющуюся.", false,
+            "экзотермическую химическую реакцию, протекающую с неизменной скоростью.", false,
+            "эндотермическую химическую реакцию, протекающую с неизменной скоростью.", false),
+
+            new Question("Горючая среда может быть охарактиризована как:",
+            "среда, способная воспламеняться при воздействии источника зажигания.", true,
+            "средство энергетического воздействия, инициирующее возникновение горения.", false,
+            "неконтролируемое горение вне специального очага без нанесения ущерба.", false),
+
+            new Question("Источник зажигания может быть охарактиризован как:",
+            "средство энергетического воздействия, инициирующее возникновение горения.", true,
+            "среда, способная воспламеняться при воздействии источника зажигания.", false,
+            "неконтролируемое горение вне специального очага без нанесения ущерба.", false),
+
+            new Question("Загорание может быть охарактеризовано как:",
+            "неконтролируемое горение вне специального очага без нанесения ущерба.", true,
+            "среда, способная воспламеняться при воздействии источника зажигания.", false,
+            "средство энергетического воздействия, инициирующее возникновение горения.", false),
+
+            new Question("К опасным факторам пожара, воздействующим на людей и имущество, относятся:",
+            "пламя и искры.", true,
+            "тепловой поток.", true,
+            "пониженная температура окружающей среды.", false,
+            "повышенная концентрация токсичных продуктов горения и термического разложения.", true,
+            "повышенная концентрация кислорода.", false,
+            "снижение видимости в дыму.", true),
+
+            new Question("Каждый гражданин при обнаружении пожара или признаков горения должен:",
+            "сообщить об этом по телефону в пожарную охрану.", true,
+            "принять по возможности меры по эвакуации людей, тушению пожара и сохранности материальных ценностей.", true,
+            "немедленно эвакуироваться лично.", false,
+            "проигнорировать его в целях недопущения паники.", false),
+
+        },
+        new Question[]
+        {
+            new Question("question",
+            "переносные и передвижные огнетушители.", true,
+            "пожарные краны и средства обеспечения их использования.", true,
+            "покрывала для изоляции очага возгорания.", true,
+            "противопожарные двери.", false,
+            "водопроводные трубы.", false),
+
+            new Question("Пожарный кран (ПК) – это комплект, состоящий из: ",
+            "клапана, установленного на пожарном трубопроводе и оборудованного пожарной соединительной головкой.", true,
+            "пожарного рукава с ручным стволом.", true,
+            "водопроводной трубы.", false,
+            "огнетушителя.", false,
+            "пожарного топора.", false),
+
+            new Question("Огнетушители предназначены для: ",
+            "тушения пожара на начальной стадии его развития.", true,
+            "тушения пожара на поздней стадии его развития.", false,
+            "использования после окончания пожара.", false,
+            "не предназначены для тушения пожара.", false),
+
+            new Question("Подход к очагу пожара нужно тушить: ",
+            "с наветренной стороны, начиная с его переднего края и постепенно перемещаясь вглубь.", true,
+            "с подветренной стороны, начиная с его переднего края и постепенно перемещаясь вглубь.", false,
+            "с наветренной стороны, начиная с его дальнего края и постепенно перемещаясь вглубь.", false,
+            "с подветренной стороны, начиная с его дальнего края и постепенно перемещаясь вглубь.", false),
+
+            new Question("Льющуюся с высоты горящую жидкость нужно тушить: ",
+            "сверху вниз.", true,
+            "снизу вверх.", false,
+            "слева направо.", false,
+            "справа налево.", false),
+
+            new Question("Горящую вертикальную поверхность надо тушить: ",
+            "сверху вниз.", true,
+            "сверху вниз.", false,
+            "слева направо.", false,
+            "справа налево.", false),
+
+            new Question("При наличии нескольких огнетушителей: ",
+            "необходимо применять их одновременно.", true,
+            "нельзя применять их одновременно.", false,
+            "необходимо применять их поперменно.", false,
+            "необходимо оставить второй на пожарном щите.", false),
+        },
+        new Question[]
+        {
+            new Question("question",
             "right answer", true,
             "wrong answer", false,
             "wrong answer2", false,
@@ -207,20 +299,20 @@ public class TestManager : MonoBehaviour
             "wrong answer4", false,
             "wrong answer5", false),
 
-            new Question("vopros2 theme1",
+            new Question("question",
             "right answer", true,
             "wrong answer", false,
             "wrong answer2", false,
             "wrong answer3", false,
             "wrong answer4", false),
 
-            new Question("vopros3 theme1",
+            new Question("question",
             "right answer", true,
             "wrong answer", false,
             "wrong answer2", false,
             "wrong answer3", false),
 
-            new Question("vopros4 theme1",
+            new Question("question",
             "right answer", true,
             "right answer2", true,
             "wrong answer", false,
@@ -229,7 +321,7 @@ public class TestManager : MonoBehaviour
         },
         new Question[]
         {
-            new Question("vopros theme2",
+            new Question("question",
             "right answer", true,
             "wrong answer", false,
             "wrong answer2", false,
@@ -237,7 +329,7 @@ public class TestManager : MonoBehaviour
             "wrong answer4", false,
             "wrong answer5", false),
 
-            new Question("vopros2 theme2",
+            new Question("question",
             "right answer", true,
             "wrong answer", false,
             "wrong answer2", false,
@@ -245,7 +337,7 @@ public class TestManager : MonoBehaviour
             "wrong answer4", false,
             "wrong answer5", false),
 
-            new Question("vopros3 theme2",
+            new Question("question",
             "right answer", true,
             "wrong answer", false,
             "wrong answer2", false,
@@ -253,7 +345,7 @@ public class TestManager : MonoBehaviour
             "wrong answer4", false,
             "wrong answer5", false),
 
-            new Question("vopros4 theme2",
+            new Question("question",
             "right answer", true,
             "wrong answer", false,
             "wrong answer2", false,
@@ -273,6 +365,20 @@ public class Question
     {
         question = inputQuestion;
         answers = inputAnswers;
+    }
+
+    public Question(string inputQuestion, string answer1, bool isCorrect1, string answer2, bool isCorrect2)
+    {
+        question = inputQuestion;
+        answers = new Answer[] { new Answer(answer1, isCorrect1), new Answer(answer2, isCorrect2)};
+    }
+
+    public Question(string inputQuestion, string answer1, bool isCorrect1, string answer2, bool isCorrect2,
+        string answer3, bool isCorrect3)
+    {
+        question = inputQuestion;
+        answers = new Answer[] { new Answer(answer1, isCorrect1), new Answer(answer2, isCorrect2),
+        new Answer(answer3, isCorrect3)};
     }
 
     public Question(string inputQuestion, string answer1, bool isCorrect1, string answer2, bool isCorrect2,
