@@ -5,11 +5,13 @@ using TMPro;
 
 public class SlideManager : MonoBehaviour
 {
-    SpriteRenderer m_SpriteRenderer;
+    public SpriteRenderer m_SpriteRenderer;
 
     public static SlideManager instance;
-    public Sprite[] osnovnie_poniatia;
-    public Sprite[] pervichnie_sredstva;
+    public Sprite[] theme0;
+    public Sprite[] theme1;
+    public Sprite[] theme2;
+    public Sprite[] theme3;
     Sprite[] chosenTheme;
     public TMP_Text slideCounter;
     int slideNumber;
@@ -21,15 +23,21 @@ public class SlideManager : MonoBehaviour
         switch (IntersceneMemory.instance.themeIndex)
         {
             case 0:
-                chosenTheme = osnovnie_poniatia;
+                chosenTheme = theme0;
                 break;
             case 1:
-                chosenTheme = pervichnie_sredstva;
+                chosenTheme = theme1;
+                break;
+            case 2:
+                chosenTheme = theme2;
+                break;
+            case 3:
+                chosenTheme = theme3;
                 break;
         }
 
         slideNumber = 0;
-        m_SpriteRenderer = GetComponent<SpriteRenderer>();
+        //m_SpriteRenderer = GetComponent<SpriteRenderer>();
         m_SpriteRenderer.sprite = chosenTheme[slideNumber];
 
         SlideCounterUpdate();

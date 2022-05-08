@@ -60,7 +60,6 @@ public class IntersceneMemory : MonoBehaviour
         {
             string json = File.ReadAllText(path);
             SaveData data = JsonUtility.FromJson<SaveData>(json);
-            //Debug.Log(json);
 
             coins = data.saveCoins;
             for (int i = 0; i < data.stars.Length; i++)

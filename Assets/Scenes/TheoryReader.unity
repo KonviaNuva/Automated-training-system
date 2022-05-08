@@ -123,6 +123,73 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &51398401
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 51398403}
+  - component: {fileID: 51398402}
+  m_Layer: 0
+  m_Name: SlideManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &51398402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 51398401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9217a4f24041b8419ee0e078fd42fd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SpriteRenderer: {fileID: 375714348}
+  theme0:
+  - {fileID: 21300000, guid: 045956446b236834aae4ea3e56a8033b, type: 3}
+  - {fileID: 21300000, guid: 0f864af0e98c61549b3a1348031035ab, type: 3}
+  - {fileID: 21300000, guid: 25508fd159681d2458e4072edfbcbf07, type: 3}
+  - {fileID: 21300000, guid: 001b71641504ba4438fa1695118b6aae, type: 3}
+  - {fileID: 21300000, guid: 2433b8deb4ee35348a2c646d88156d87, type: 3}
+  theme1:
+  - {fileID: 21300000, guid: 6d7ed30676124254291ce1e73cb64e79, type: 3}
+  - {fileID: 21300000, guid: 57f4b85046415b547b2d10b3b6f04bf4, type: 3}
+  - {fileID: 21300000, guid: fc0f5cd4bc7bcd140b1be4de8b352d6d, type: 3}
+  - {fileID: 21300000, guid: 92f629467c25dfe4f96da73bab4eb8d0, type: 3}
+  - {fileID: 21300000, guid: 8b73e48dc4422044d9dc0c3d295af05b, type: 3}
+  - {fileID: 21300000, guid: 71db586ca165c664a9472dffbdb45183, type: 3}
+  - {fileID: 21300000, guid: ade8aaf7f0e53314dbd25069f840def0, type: 3}
+  theme2:
+  - {fileID: 21300000, guid: 5d67e5a4e35c7f34196e4fe0ab731865, type: 3}
+  - {fileID: 21300000, guid: ea2f4a210da37db45b584f43b1325012, type: 3}
+  - {fileID: 21300000, guid: 8a68e9459cb715b439f249e49c472436, type: 3}
+  theme3:
+  - {fileID: 21300000, guid: de357861385ba4c4f84e35a497a173e8, type: 3}
+  - {fileID: 21300000, guid: e1aeed852bfc35146bfb6d679824dfcb, type: 3}
+  - {fileID: 21300000, guid: fa862c91cd4eb184b83a2f0372d45b6c, type: 3}
+  slideCounter: {fileID: 1424058559}
+--- !u!4 &51398403
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 51398401}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.32865614, y: 0.35841393, z: -0.4633541}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &312767068
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,7 +370,6 @@ GameObject:
   m_Component:
   - component: {fileID: 375714349}
   - component: {fileID: 375714348}
-  - component: {fileID: 375714350}
   m_Layer: 0
   m_Name: SlideScreen
   m_TagString: Untagged
@@ -376,33 +442,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &375714350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 375714347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9217a4f24041b8419ee0e078fd42fd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  osnovnie_poniatia:
-  - {fileID: 21300000, guid: 045956446b236834aae4ea3e56a8033b, type: 3}
-  - {fileID: 21300000, guid: 0f864af0e98c61549b3a1348031035ab, type: 3}
-  - {fileID: 21300000, guid: 25508fd159681d2458e4072edfbcbf07, type: 3}
-  - {fileID: 21300000, guid: 001b71641504ba4438fa1695118b6aae, type: 3}
-  - {fileID: 21300000, guid: 2433b8deb4ee35348a2c646d88156d87, type: 3}
-  pervichnie_sredstva:
-  - {fileID: 21300000, guid: 6d7ed30676124254291ce1e73cb64e79, type: 3}
-  - {fileID: 21300000, guid: 57f4b85046415b547b2d10b3b6f04bf4, type: 3}
-  - {fileID: 21300000, guid: fc0f5cd4bc7bcd140b1be4de8b352d6d, type: 3}
-  - {fileID: 21300000, guid: 92f629467c25dfe4f96da73bab4eb8d0, type: 3}
-  - {fileID: 21300000, guid: 8b73e48dc4422044d9dc0c3d295af05b, type: 3}
-  - {fileID: 21300000, guid: 71db586ca165c664a9472dffbdb45183, type: 3}
-  - {fileID: 21300000, guid: ade8aaf7f0e53314dbd25069f840def0, type: 3}
-  slideCounter: {fileID: 1424058559}
 --- !u!1 &675162534
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,7 +566,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: TheoryThemes
-  themeName: 
+  themeIndex: 0
 --- !u!1 &1042008110
 GameObject:
   m_ObjectHideFlags: 0
