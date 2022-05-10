@@ -38,7 +38,7 @@ public class TheoryThemesManager : MonoBehaviour
 
     public void FlipPageForward()
     {
-        if (pageNumber * 3 < IntersceneMemory.instance.themes.Length)
+        if ((pageNumber + 1) * 3 < IntersceneMemory.instance.themes.Length)
         {
             pageNumber++;
             ShowPage();
@@ -47,7 +47,7 @@ public class TheoryThemesManager : MonoBehaviour
 
     public void FlipPageBack()
     {
-        if (pageNumber >= 0)
+        if (pageNumber > 0)
         {
             pageNumber--;
             ShowPage();

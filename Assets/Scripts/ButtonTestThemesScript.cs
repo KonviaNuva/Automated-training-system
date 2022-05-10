@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class ButtonTestThemesScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public string direction;
 
-    // Update is called once per frame
-    void Update()
+    private void OnMouseDown()
     {
-        
+        switch (direction)
+        {
+            case "forward":
+                TestThemesManager.instance.FlipPageForward();
+                break;
+            case "back":
+                TestThemesManager.instance.FlipPageBack();
+                break;
+        }
     }
 }
