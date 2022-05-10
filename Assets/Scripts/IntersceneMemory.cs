@@ -11,7 +11,7 @@ public class IntersceneMemory : MonoBehaviour
     public int themeIndex;
     public int coins;
     public testHighscore[] testHighscores;
-    string[] themes;
+    public string[] themes;
 
     // Start is called before the first frame update
     void Start()
@@ -22,8 +22,10 @@ public class IntersceneMemory : MonoBehaviour
 
         themes = new string[]
         {
-            "основные понятия",
-            "первичные средства"
+            "Основные понятия в области пожарной безопасности",
+            "Первичные средства пожаротушения",
+            "Тема 3",
+            "Тема 4"
         };
 
         testHighscores = new testHighscore[themes.Length];
