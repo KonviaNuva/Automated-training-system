@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestThemes.unity
     guid: 8fa435dfa819b2143b71b8be8708c1e6
+  - enabled: 1
+    path: Assets/Scenes/Rewards.unity
+    guid: 7be8ca1a68c917f4bb36c3c9a710ca5a
   m_configObjects: {}
