@@ -12,8 +12,8 @@ public class IntersceneMemory : MonoBehaviour
     public int coins;
     public testHighscore[] testHighscores;
     public string[] themes;
+    public int backgroundNumber = 0;
 
-    // Start is called before the first frame update
     void Start()
     {
         instance = this;
@@ -49,6 +49,7 @@ public class IntersceneMemory : MonoBehaviour
         {
             data.stars[i] = testHighscores[i].stars;
         }
+        data.saveBackgroundNumber = backgroundNumber;        
 
         string json = JsonUtility.ToJson(data);
 
@@ -68,6 +69,8 @@ public class IntersceneMemory : MonoBehaviour
             {
                 testHighscores[i].stars = data.stars[i];
             }
+            backgroundNumber = data.saveBackgroundNumber;
+            BackgroundManager.instance.SetBackground(backgroundNumber);
         }
     }
 
@@ -92,4 +95,5 @@ class SaveData
 {
     public int saveCoins;
     public int[] stars;
+    public int saveBackgroundNumber;
 }
