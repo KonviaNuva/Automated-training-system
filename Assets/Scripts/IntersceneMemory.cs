@@ -10,6 +10,7 @@ public class IntersceneMemory : MonoBehaviour
 
     public int themeIndex;
     public int coins;
+    public int totalCoins;
     public testHighscore[] testHighscores;
     public string[] themes;
     public int backgroundNumber = 0;
@@ -43,6 +44,7 @@ public class IntersceneMemory : MonoBehaviour
     {
         SaveData data = new SaveData();
         data.saveCoins = coins;
+        data.saveTotalCoins = totalCoins;
 
         data.stars = new int[testHighscores.Length];
         for (int i = 0; i < data.stars.Length; i++)
@@ -65,6 +67,7 @@ public class IntersceneMemory : MonoBehaviour
             SaveData data = JsonUtility.FromJson<SaveData>(json);
 
             coins = data.saveCoins;
+            totalCoins = data.saveTotalCoins;
             for (int i = 0; i < data.stars.Length; i++)
             {
                 testHighscores[i].stars = data.stars[i];
@@ -94,6 +97,7 @@ public class testHighscore
 class SaveData
 {
     public int saveCoins;
+    public int saveTotalCoins;
     public int[] stars;
     public int saveBackgroundNumber;
 }

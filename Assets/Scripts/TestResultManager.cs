@@ -20,6 +20,7 @@ public class TestResultManager : MonoBehaviour
         coins = (int)TestManager.instance.score * 10;
 
         IntersceneMemory.instance.coins += this.coins;
+        IntersceneMemory.instance.totalCoins += this.coins;
         if (IntersceneMemory.instance.testHighscores[IntersceneMemory.instance.themeIndex].stars < this.stars)
         {
             IntersceneMemory.instance.testHighscores[IntersceneMemory.instance.themeIndex].stars = this.stars;

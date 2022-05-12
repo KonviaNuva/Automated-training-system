@@ -33,7 +33,7 @@ public class RewardManager : MonoBehaviour
 
         for (int i = 4; i < 7; i++)
         {
-            if (IntersceneMemory.instance.coins >= 100 + (i - 4) * 200)
+            if (IntersceneMemory.instance.totalCoins >= 100 + (i - 4) * 200)
             {
                 cups[i].SetActive(true);
                 if (i == 5)
@@ -41,7 +41,7 @@ public class RewardManager : MonoBehaviour
                     buttons[2].SetActive(true);
                 }
             }
-            cupTexts[i].text = "Заработано " + IntersceneMemory.instance.coins + "/" + (100 + (i - 4) * 200) 
+            cupTexts[i].text = "Заработано " + IntersceneMemory.instance.totalCoins + "/" + (100 + (i - 4) * 200) 
                 + " монет";
         }
 
