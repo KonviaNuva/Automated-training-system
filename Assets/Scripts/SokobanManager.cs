@@ -31,41 +31,44 @@ public class SokobanManager : MonoBehaviour
 
     void DrawLevel()
     {
-        for (int i = 0; i < 2; i++)
+        Vector3 levelCenter = new Vector3(squareSideLength * sokobanLevel.GetUpperBound(0) / 2, 
+            squareSideLength * sokobanLevel.GetUpperBound(1) / 2);
+
+        for (int i = 0; i <= sokobanLevel.GetUpperBound(0); i++)
         {
-            for (int j = 0; j < 3; j++)
+            for (int j = 0; j <= sokobanLevel.GetUpperBound(1); j++)
             {
-                Instantiate(floorPrefab, new Vector3(i * squareSideLength, j * squareSideLength), 
-                    floorPrefab.transform.rotation);
+                Instantiate(floorPrefab, new Vector3(-levelCenter.x + i * squareSideLength, 
+                    -levelCenter.y + j * squareSideLength), floorPrefab.transform.rotation);
             }
-            for (int j = 0; j < 3; j++)
+            for (int j = 0; j <= sokobanLevel.GetUpperBound(1); j++)
             {
                 if (sokobanLevel[i, j].isCrate)
                 {
-                    Instantiate(cratePrefab, new Vector3(i * squareSideLength, j * squareSideLength),
-                    cratePrefab.transform.rotation);
+                    Instantiate(cratePrefab, new Vector3(-levelCenter.x + i * squareSideLength, 
+                        -levelCenter.y + j * squareSideLength), cratePrefab.transform.rotation);
                 }
             }
-            for (int j = 0; j < 3; j++)
+            for (int j = 0; j <= sokobanLevel.GetUpperBound(1); j++)
             {
                 if (sokobanLevel[i, j].isMarked)
                 {
-                    Instantiate(markPrefab, new Vector3(i * squareSideLength, j * squareSideLength),
-                    markPrefab.transform.rotation);
+                    Instantiate(markPrefab, new Vector3(-levelCenter.x + i * squareSideLength, 
+                        -levelCenter.y + j * squareSideLength), markPrefab.transform.rotation);
                 }
             }
-            for (int j = 0; j < 3; j++)
+            for (int j = 0; j <= sokobanLevel.GetUpperBound(1); j++)
             {
                 if (sokobanLevel[i, j].isWall)
                 {
-                    Instantiate(wallPrefab, new Vector3(i * squareSideLength, j * squareSideLength),
-                    wallPrefab.transform.rotation);
+                    Instantiate(wallPrefab, new Vector3(-levelCenter.x + i * squareSideLength, 
+                        -levelCenter.y + j * squareSideLength), wallPrefab.transform.rotation);
                 }
             }
         }
 
-        Instantiate(playerPrefab, new Vector3(playerPositionX * squareSideLength, playerPositionY * squareSideLength),
-                    playerPrefab.transform.rotation);
+        Instantiate(playerPrefab, new Vector3(-levelCenter.x + playerPositionX * squareSideLength,
+            -levelCenter.y + playerPositionY * squareSideLength), playerPrefab.transform.rotation);
     }
 
     void LoadLevel()
