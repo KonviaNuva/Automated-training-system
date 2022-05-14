@@ -1107,7 +1107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cc28e36fb0d57444a1359b9f9927e04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: Gameplay
+  sceneName: Sokoban
   themeIndex: 0
 --- !u!1 &519420028
 GameObject:
