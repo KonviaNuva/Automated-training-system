@@ -25,19 +25,74 @@ public class SokobanManager : MonoBehaviour
 
         squareSideLength = floorPrefab.GetComponent<BoxCollider2D>().size.x;
 
+        LoadLevel();
         DrawLevel();
     }
 
     void DrawLevel()
     {
-        Instantiate(floorPrefab, new Vector3(0, 0), floorPrefab.transform.rotation);
-        Instantiate(playerPrefab, new Vector3(0, 0), floorPrefab.transform.rotation);
+        for (int i = 0; i < 2; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                Instantiate(floorPrefab, new Vector3(i * squareSideLength, j * squareSideLength), 
+                    floorPrefab.transform.rotation);
+            }
+            for (int j = 0; j < 3; j++)
+            {
+                if (sokobanLevel[i, j].isCrate)
+                {
+                    Instantiate(cratePrefab, new Vector3(i * squareSideLength, j * squareSideLength),
+                    cratePrefab.transform.rotation);
+                }
+            }
+            for (int j = 0; j < 3; j++)
+            {
+                if (sokobanLevel[i, j].isMarked)
+                {
+                    Instantiate(markPrefab, new Vector3(i * squareSideLength, j * squareSideLength),
+                    markPrefab.transform.rotation);
+                }
+            }
+            for (int j = 0; j < 3; j++)
+            {
+                if (sokobanLevel[i, j].isWall)
+                {
+                    Instantiate(wallPrefab, new Vector3(i * squareSideLength, j * squareSideLength),
+                    wallPrefab.transform.rotation);
+                }
+            }
+        }
+
+        Instantiate(playerPrefab, new Vector3(playerPositionX * squareSideLength, playerPositionY * squareSideLength),
+                    playerPrefab.transform.rotation);
+    }
+
+    void LoadLevel()
+    {
+        playerPositionX = 1;
+        playerPositionY = 0;
+
+        sokobanLevel = new SokobanSquare[2,3];
+        sokobanLevel[0, 0] = new SokobanSquare(true, false, false);
+        sokobanLevel[0, 1] = new SokobanSquare(true, false, false);
+        sokobanLevel[0, 2] = new SokobanSquare(true, false, false);
+        sokobanLevel[1, 0] = new SokobanSquare(false, false, false);
+        sokobanLevel[1, 1] = new SokobanSquare(false, false, true);
+        sokobanLevel[1, 2] = new SokobanSquare(false, true, false);
     }
 }
 
 public class SokobanSquare
 {
-    bool isWall; // стенка ли это? Если да - клетка непроходима, рисуется стена. Если нет - проходима, рисуем пол.
-    bool isMarked; // стоит ли тут метка, что нужно поставить сюда ящик. Если да - рисуем метку, ящик тут - условие победы.
-    bool isCrate; //  есть ли тут ящик?
+    public bool isWall; // стенка ли это? Если да - клетка непроходима, рисуется стена. Если нет - проходима, рисуем пол.
+    public bool isMarked; // стоит ли тут метка, что нужно поставить сюда ящик. Если да - рисуем метку, ящик тут - условие победы.
+    public bool isCrate; //  есть ли тут ящик?
+
+    public SokobanSquare(bool inputIsWall, bool inputIsMarked, bool inputIsCrate)
+    {
+        isWall = inputIsWall;
+        isMarked = inputIsMarked;
+        isCrate = inputIsCrate;
+    }
 }
