@@ -30,10 +30,15 @@ public class SokobanManager : MonoBehaviour
 
     public void TryToMove(string direction)
     {
-        Debug.Log("trying to move " + direction);
+        //Debug.Log("trying to move " + direction);
         if (IsMoveValid(direction))
         {
+            //Debug.Log("ход возможен");
             MoveCharacter(direction);            
+        }
+        else
+        {
+            //Debug.Log("ход невозможен");
         }
         ClearLevel();
         DrawLevel();
@@ -48,9 +53,6 @@ public class SokobanManager : MonoBehaviour
         //проверка валидности хода. нельзя ходить в стенку и за пределы поля или отправлять ящик туда же или в другой ящик
         //попробуем перебрать невалидные ходы, а иначе разрешать
         //нас интересуют две клетки в направлении движения от игрока. что на них и существуют ли они вообще
-        //если клетка вообще не существует - считаем, что там стенка
-        //SokobanSquare targetSquare;
-        //SokobanSquare squareAfterTarger;
 
         if (direction == "right")
         {
@@ -67,6 +69,16 @@ public class SokobanManager : MonoBehaviour
             {
                 return false;
             }
+            if ((sokobanLevel[playerPositionX + 1, playerPositionY].isCrate) &&
+                    (sokobanLevel[playerPositionX + 2, playerPositionY].isCrate))
+            {
+                return false;
+            }
+            if ((sokobanLevel[playerPositionX + 1, playerPositionY].isCrate) &&
+                    (sokobanLevel[playerPositionX + 2, playerPositionY].isWall))
+            {
+                return false;
+            }
         }
         if (direction == "left")
         {
@@ -75,6 +87,21 @@ public class SokobanManager : MonoBehaviour
                 return false;
             }
             if (sokobanLevel[playerPositionX - 1, playerPositionY].isWall)
+            {
+                return false;
+            }
+            if ((sokobanLevel[playerPositionX - 1, playerPositionY].isCrate) &&
+                    (playerPositionX - 2 < 0))
+            {
+                return false;
+            }
+            if ((sokobanLevel[playerPositionX - 1, playerPositionY].isCrate) &&
+                    (sokobanLevel[playerPositionX - 2, playerPositionY].isCrate))
+            {
+                return false;
+            }
+            if ((sokobanLevel[playerPositionX - 1, playerPositionY].isCrate) &&
+                    (sokobanLevel[playerPositionX - 2, playerPositionY].isWall))
             {
                 return false;
             }
@@ -89,15 +116,50 @@ public class SokobanManager : MonoBehaviour
             {
                 return false;
             }
+            if ((sokobanLevel[playerPositionX, playerPositionY + 1].isCrate) &&
+                    (playerPositionY + 2 > sokobanLevel.GetUpperBound(1)))
+            {
+                return false;
+            }
+            if ((sokobanLevel[playerPositionX, playerPositionY + 1].isCrate) &&
+                    (sokobanLevel[playerPositionX, playerPositionY + 2].isCrate))
+            {
+                return false;
+            }
+            if ((sokobanLevel[playerPositionX, playerPositionY + 1].isCrate) &&
+                    (sokobanLevel[playerPositionX, playerPositionY + 2].isWall))
+            {
+                return false;
+            }
         }
         if (direction == "down")
         {
             if (playerPositionY - 1 < 0)
             {
+                //Debug.Log("внизу конец уровня");
                 return false;
             }
             if (sokobanLevel[playerPositionX, playerPositionY - 1].isWall)
             {
+                //Debug.Log("внизу стена");
+                return false;
+            }
+            if ((sokobanLevel[playerPositionX, playerPositionY - 1].isCrate) &&
+                    (playerPositionY - 2 < 0))
+            {
+                //Debug.Log("внизу ящик и конец уровня");
+                return false;
+            }
+            if ((sokobanLevel[playerPositionX, playerPositionY - 1].isCrate) &&
+                    (sokobanLevel[playerPositionX, playerPositionY - 2].isCrate))
+            {
+                //Debug.Log("внизу два ящика");
+                return false;
+            }
+            if ((sokobanLevel[playerPositionX, playerPositionY - 1].isCrate) &&
+                    (sokobanLevel[playerPositionX, playerPositionY - 2].isWall))
+            {
+                //Debug.Log("внизу ящик и стена");
                 return false;
             }
         }
@@ -115,18 +177,38 @@ public class SokobanManager : MonoBehaviour
         if (direction == "right")
         {
             playerPositionX++;
+            if (sokobanLevel[playerPositionX, playerPositionY].isCrate)
+            {
+                sokobanLevel[playerPositionX + 1, playerPositionY].isCrate = true;
+                sokobanLevel[playerPositionX, playerPositionY].isCrate = false;
+            }
         }
         if (direction == "left")
         {
             playerPositionX--;
+            if (sokobanLevel[playerPositionX, playerPositionY].isCrate)
+            {
+                sokobanLevel[playerPositionX - 1, playerPositionY].isCrate = true;
+                sokobanLevel[playerPositionX, playerPositionY].isCrate = false;
+            }
         }
         if (direction == "up")
         {
             playerPositionY++;
+            if (sokobanLevel[playerPositionX, playerPositionY].isCrate)
+            {
+                sokobanLevel[playerPositionX, playerPositionY + 1].isCrate = true;
+                sokobanLevel[playerPositionX, playerPositionY].isCrate = false;
+            }
         }
         if (direction == "down")
         {
             playerPositionY--;
+            if (sokobanLevel[playerPositionX, playerPositionY].isCrate)
+            {
+                sokobanLevel[playerPositionX, playerPositionY - 1].isCrate = true;
+                sokobanLevel[playerPositionX, playerPositionY].isCrate = false;
+            }
         }
     }
 
@@ -189,36 +271,34 @@ public class SokobanManager : MonoBehaviour
 
     void LoadLevel()
     {
-        playerPositionX = 1;
-        playerPositionY = 1;
+        playerPositionX = 0;
+        playerPositionY = 0;
 
-        /*sokobanLevel = new SokobanSquare[5,3];
-        sokobanLevel[0, 0] = new SokobanSquare(true, false, false);
-        sokobanLevel[0, 1] = new SokobanSquare(true, false, false);
-        sokobanLevel[0, 2] = new SokobanSquare(true, false, false);
-        sokobanLevel[1, 0] = new SokobanSquare(true, false, false);
-        sokobanLevel[1, 1] = new SokobanSquare(false, false, false);
-        sokobanLevel[1, 2] = new SokobanSquare(true, false, false);
-        sokobanLevel[2, 0] = new SokobanSquare(true, false, false);
-        sokobanLevel[2, 1] = new SokobanSquare(false, false, true);
-        sokobanLevel[2, 2] = new SokobanSquare(true, false, false);
-        sokobanLevel[3, 0] = new SokobanSquare(true, false, false);
-        sokobanLevel[3, 1] = new SokobanSquare(false, true, false);
-        sokobanLevel[3, 2] = new SokobanSquare(true, false, false);
-        sokobanLevel[4, 0] = new SokobanSquare(true, false, false);
-        sokobanLevel[4, 1] = new SokobanSquare(true, false, false);
-        sokobanLevel[4, 2] = new SokobanSquare(true, false, false);*/
-
-        sokobanLevel = new SokobanSquare[3, 3];
+        sokobanLevel = new SokobanSquare[6,4];
         sokobanLevel[0, 0] = new SokobanSquare(false, false, false);
         sokobanLevel[0, 1] = new SokobanSquare(false, false, false);
         sokobanLevel[0, 2] = new SokobanSquare(false, false, false);
+        sokobanLevel[0, 3] = new SokobanSquare(false, false, false);
         sokobanLevel[1, 0] = new SokobanSquare(false, false, false);
         sokobanLevel[1, 1] = new SokobanSquare(false, false, false);
         sokobanLevel[1, 2] = new SokobanSquare(false, false, false);
+        sokobanLevel[1, 3] = new SokobanSquare(false, false, false);
         sokobanLevel[2, 0] = new SokobanSquare(false, false, false);
-        sokobanLevel[2, 1] = new SokobanSquare(false, false, false);
-        sokobanLevel[2, 2] = new SokobanSquare(false, false, false);
+        sokobanLevel[2, 1] = new SokobanSquare(false, false, true);
+        sokobanLevel[2, 2] = new SokobanSquare(false, false, true);
+        sokobanLevel[2, 3] = new SokobanSquare(false, false, false);
+        sokobanLevel[3, 0] = new SokobanSquare(false, false, false);
+        sokobanLevel[3, 1] = new SokobanSquare(false, true, false);
+        sokobanLevel[3, 2] = new SokobanSquare(false, true, false);
+        sokobanLevel[3, 3] = new SokobanSquare(false, false, false);
+        sokobanLevel[4, 0] = new SokobanSquare(false, false, false);
+        sokobanLevel[4, 1] = new SokobanSquare(false, false, false);
+        sokobanLevel[4, 2] = new SokobanSquare(false, false, false);
+        sokobanLevel[4, 3] = new SokobanSquare(false, false, false);
+        sokobanLevel[5, 0] = new SokobanSquare(true, false, false);
+        sokobanLevel[5, 1] = new SokobanSquare(true, false, false);
+        sokobanLevel[5, 2] = new SokobanSquare(true, false, false);
+        sokobanLevel[5, 3] = new SokobanSquare(true, false, false);
     }
 }
 
