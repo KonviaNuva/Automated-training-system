@@ -27,8 +27,8 @@ public class IntersceneMemory : MonoBehaviour
         {
             "Основные понятия в области пожарной безопасности",
             "Первичные средства пожаротушения",
-            "Тема 3",
-            "Тема 4"
+            "Эвакуация при пожаре",
+            "Первая помощь при пожаре"
         };
 
         testHighscores = new testHighscore[themes.Length];
@@ -38,7 +38,6 @@ public class IntersceneMemory : MonoBehaviour
             testHighscores[i].stars = 0;
         }
 
-        //DeleteUserData();
         LoadUserData();
     }
 
