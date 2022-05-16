@@ -40,6 +40,10 @@ public class RewardManager : MonoBehaviour
                 {
                     buttons[2].SetActive(true);
                 }
+                if (i == 6)
+                {
+                    buttons[3].SetActive(true);
+                }
             }
             cupTexts[i].text = "Заработано " + IntersceneMemory.instance.totalCoins + "/" + (100 + (i - 4) * 200) 
                 + " монет";
