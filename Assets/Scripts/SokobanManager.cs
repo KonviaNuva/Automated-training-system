@@ -14,6 +14,8 @@ public class SokobanManager : MonoBehaviour
     public GameObject floorPrefab;
     public GameObject markPrefab;
 
+    public GameObject victoryMessage;
+
     int playerPositionX;
     int playerPositionY;
     SokobanSquare[,] sokobanLevel;
@@ -24,7 +26,7 @@ public class SokobanManager : MonoBehaviour
 
         squareSideLength = floorPrefab.GetComponent<BoxCollider2D>().size.x;
 
-        LoadLevel();
+        LoadLevel(IntersceneMemory.instance.themeIndex);
         DrawLevel();
     }
 
@@ -45,6 +47,12 @@ public class SokobanManager : MonoBehaviour
         if (IsItWin())
         {
             //отображаем победное сообщение
+            //в принципе, все можно сделать предельно просто. Создадим объект сообщения, красивую картинку, 
+            //обычно неактивную, а потом будем делать активной при победе.
+            //в принципе, можно было бы добавить запоминание пройденных сокобанов... но не особо нужно
+            //а ввод надо выпилить, чтобы больше команд не шло
+            victoryMessage.SetActive(true);
+            Destroy(SokobanInputManager.instance);
         }
     }
 
@@ -215,7 +223,15 @@ public class SokobanManager : MonoBehaviour
     bool IsItWin()
     {
         //проверяет то, достигнуто ли условие победы. а именно - на помеченном месте ли все ящики
-        return false;
+        //если найдется место где ящик не на метке - возвращаем фолс, иначе тру.
+        foreach (SokobanSquare square in sokobanLevel)
+        {
+            if ((square.isCrate) != (square.isMarked))
+            {
+                return false;
+            }
+        }
+        return true;
     }
     
     void ClearLevel()
@@ -269,36 +285,180 @@ public class SokobanManager : MonoBehaviour
             -levelCenter.y + playerPositionY * squareSideLength), playerPrefab.transform.rotation);
     }
 
-    void LoadLevel()
+    void LoadLevel(int levelNumber)
     {
-        playerPositionX = 0;
-        playerPositionY = 0;
+        if (levelNumber == 0)
+        {
+            playerPositionX = 1;
+            playerPositionY = 1;
 
-        sokobanLevel = new SokobanSquare[6,4];
-        sokobanLevel[0, 0] = new SokobanSquare(false, false, false);
-        sokobanLevel[0, 1] = new SokobanSquare(false, false, false);
-        sokobanLevel[0, 2] = new SokobanSquare(false, false, false);
-        sokobanLevel[0, 3] = new SokobanSquare(false, false, false);
-        sokobanLevel[1, 0] = new SokobanSquare(false, false, false);
-        sokobanLevel[1, 1] = new SokobanSquare(false, false, false);
-        sokobanLevel[1, 2] = new SokobanSquare(false, false, false);
-        sokobanLevel[1, 3] = new SokobanSquare(false, false, false);
-        sokobanLevel[2, 0] = new SokobanSquare(false, false, false);
-        sokobanLevel[2, 1] = new SokobanSquare(false, false, true);
-        sokobanLevel[2, 2] = new SokobanSquare(false, false, true);
-        sokobanLevel[2, 3] = new SokobanSquare(false, false, false);
-        sokobanLevel[3, 0] = new SokobanSquare(false, false, false);
-        sokobanLevel[3, 1] = new SokobanSquare(false, true, false);
-        sokobanLevel[3, 2] = new SokobanSquare(false, true, false);
-        sokobanLevel[3, 3] = new SokobanSquare(false, false, false);
-        sokobanLevel[4, 0] = new SokobanSquare(false, false, false);
-        sokobanLevel[4, 1] = new SokobanSquare(false, false, false);
-        sokobanLevel[4, 2] = new SokobanSquare(false, false, false);
-        sokobanLevel[4, 3] = new SokobanSquare(false, false, false);
-        sokobanLevel[5, 0] = new SokobanSquare(true, false, false);
-        sokobanLevel[5, 1] = new SokobanSquare(true, false, false);
-        sokobanLevel[5, 2] = new SokobanSquare(true, false, false);
-        sokobanLevel[5, 3] = new SokobanSquare(true, false, false);
+            sokobanLevel = new SokobanSquare[7, 7];
+            sokobanLevel[0, 0] = new SokobanSquare(true, false, false);
+            sokobanLevel[0, 1] = new SokobanSquare(true, false, false);
+            sokobanLevel[0, 2] = new SokobanSquare(true, false, false);
+            sokobanLevel[0, 3] = new SokobanSquare(true, false, false);
+            sokobanLevel[0, 4] = new SokobanSquare(true, false, false);
+            sokobanLevel[0, 5] = new SokobanSquare(true, false, false);
+            sokobanLevel[0, 6] = new SokobanSquare(true, false, false);
+            sokobanLevel[1, 0] = new SokobanSquare(true, false, false);
+            sokobanLevel[1, 1] = new SokobanSquare(false, false, false);
+            sokobanLevel[1, 2] = new SokobanSquare(false, false, false);
+            sokobanLevel[1, 3] = new SokobanSquare(false, false, false);
+            sokobanLevel[1, 4] = new SokobanSquare(false, false, false);
+            sokobanLevel[1, 5] = new SokobanSquare(false, false, false);
+            sokobanLevel[1, 6] = new SokobanSquare(true, false, false);
+            sokobanLevel[2, 0] = new SokobanSquare(true, false, false);
+            sokobanLevel[2, 1] = new SokobanSquare(false, false, false);
+            sokobanLevel[2, 2] = new SokobanSquare(false, false, true);
+            sokobanLevel[2, 3] = new SokobanSquare(false, false, true);
+            sokobanLevel[2, 4] = new SokobanSquare(false, false, false);
+            sokobanLevel[2, 5] = new SokobanSquare(false, false, false);
+            sokobanLevel[2, 6] = new SokobanSquare(true, false, false);
+            sokobanLevel[3, 0] = new SokobanSquare(true, false, false);
+            sokobanLevel[3, 1] = new SokobanSquare(false, false, false);
+            sokobanLevel[3, 2] = new SokobanSquare(false, false, false);
+            sokobanLevel[3, 3] = new SokobanSquare(false, false, false);
+            sokobanLevel[3, 4] = new SokobanSquare(false, false, false);
+            sokobanLevel[3, 5] = new SokobanSquare(false, false, false);
+            sokobanLevel[3, 6] = new SokobanSquare(true, false, false);
+            sokobanLevel[4, 0] = new SokobanSquare(true, false, false);
+            sokobanLevel[4, 1] = new SokobanSquare(false, false, false);
+            sokobanLevel[4, 2] = new SokobanSquare(false, false, false);
+            sokobanLevel[4, 3] = new SokobanSquare(false, true, false);
+            sokobanLevel[4, 4] = new SokobanSquare(false, true, false);
+            sokobanLevel[4, 5] = new SokobanSquare(false, false, false);
+            sokobanLevel[4, 6] = new SokobanSquare(true, false, false);
+            sokobanLevel[5, 0] = new SokobanSquare(true, false, false);
+            sokobanLevel[5, 1] = new SokobanSquare(false, false, false);
+            sokobanLevel[5, 2] = new SokobanSquare(false, false, false);
+            sokobanLevel[5, 3] = new SokobanSquare(false, false, false);
+            sokobanLevel[5, 4] = new SokobanSquare(false, false, false);
+            sokobanLevel[5, 5] = new SokobanSquare(false, false, false);
+            sokobanLevel[5, 6] = new SokobanSquare(true, false, false);
+            sokobanLevel[6, 0] = new SokobanSquare(true, false, false);
+            sokobanLevel[6, 1] = new SokobanSquare(true, false, false);
+            sokobanLevel[6, 2] = new SokobanSquare(true, false, false);
+            sokobanLevel[6, 3] = new SokobanSquare(true, false, false);
+            sokobanLevel[6, 4] = new SokobanSquare(true, false, false);
+            sokobanLevel[6, 5] = new SokobanSquare(true, false, false);
+            sokobanLevel[6, 6] = new SokobanSquare(true, false, false);
+        }
+
+        if (levelNumber == 1)
+        {
+            playerPositionX = 0;
+            playerPositionY = 2;
+
+            sokobanLevel = new SokobanSquare[7, 6];
+
+            sokobanLevel[0, 0] = new SokobanSquare(false, false, false);
+            sokobanLevel[0, 1] = new SokobanSquare(true, false, false);
+            sokobanLevel[0, 2] = new SokobanSquare(false, false, false);
+            sokobanLevel[0, 3] = new SokobanSquare(true, false, false);
+            sokobanLevel[0, 4] = new SokobanSquare(false, false, false);
+            sokobanLevel[0, 5] = new SokobanSquare(false, false, false);
+            sokobanLevel[1, 0] = new SokobanSquare(false, false, false);
+            sokobanLevel[1, 1] = new SokobanSquare(true, false, false);
+            sokobanLevel[1, 2] = new SokobanSquare(false, false, false);
+            sokobanLevel[1, 3] = new SokobanSquare(true, false, false);
+            sokobanLevel[1, 4] = new SokobanSquare(false, false, false);
+            sokobanLevel[1, 5] = new SokobanSquare(false, false, false);
+            sokobanLevel[2, 0] = new SokobanSquare(false, false, false);
+            sokobanLevel[2, 1] = new SokobanSquare(true, false, false);
+            sokobanLevel[2, 2] = new SokobanSquare(false, false, false);
+            sokobanLevel[2, 3] = new SokobanSquare(true, false, false);
+            sokobanLevel[2, 4] = new SokobanSquare(true, false, false);
+            sokobanLevel[2, 5] = new SokobanSquare(false, false, false);
+            sokobanLevel[3, 0] = new SokobanSquare(true, false, false);
+            sokobanLevel[3, 1] = new SokobanSquare(true, false, false);
+            sokobanLevel[3, 2] = new SokobanSquare(false, false, true);
+            sokobanLevel[3, 3] = new SokobanSquare(false, false, false);
+            sokobanLevel[3, 4] = new SokobanSquare(true, false, false);
+            sokobanLevel[3, 5] = new SokobanSquare(true, false, false);
+            sokobanLevel[4, 0] = new SokobanSquare(true, false, false);
+            sokobanLevel[4, 1] = new SokobanSquare(false, false, false);
+            sokobanLevel[4, 2] = new SokobanSquare(false, false, false);
+            sokobanLevel[4, 3] = new SokobanSquare(false, false, false);
+            sokobanLevel[4, 4] = new SokobanSquare(false, true, false);
+            sokobanLevel[4, 5] = new SokobanSquare(true, false, false);
+            sokobanLevel[5, 0] = new SokobanSquare(true, false, false);
+            sokobanLevel[5, 1] = new SokobanSquare(false, false, false);
+            sokobanLevel[5, 2] = new SokobanSquare(false, false, false);
+            sokobanLevel[5, 3] = new SokobanSquare(false, false, false);
+            sokobanLevel[5, 4] = new SokobanSquare(true, false, false);
+            sokobanLevel[5, 5] = new SokobanSquare(true, false, false);
+            sokobanLevel[6, 0] = new SokobanSquare(true, false, false);
+            sokobanLevel[6, 1] = new SokobanSquare(true, false, false);
+            sokobanLevel[6, 2] = new SokobanSquare(false, false, false);
+            sokobanLevel[6, 3] = new SokobanSquare(true, false, false);
+            sokobanLevel[6, 4] = new SokobanSquare(true, false, false);
+            sokobanLevel[6, 5] = new SokobanSquare(false, false, false);
+        }
+
+        if (levelNumber == 2)
+        {
+            playerPositionX = 0;
+            playerPositionY = 5;
+
+            sokobanLevel = new SokobanSquare[8, 7];
+
+            sokobanLevel[0, 0] = new SokobanSquare(false, false, false);
+            sokobanLevel[0, 1] = new SokobanSquare(false, false, false);
+            sokobanLevel[0, 2] = new SokobanSquare(false, false, false);
+            sokobanLevel[0, 3] = new SokobanSquare(true, false, false);
+            sokobanLevel[0, 4] = new SokobanSquare(true, false, false);
+            sokobanLevel[0, 5] = new SokobanSquare(false, false, false);
+            sokobanLevel[0, 6] = new SokobanSquare(true, false, false);
+            sokobanLevel[1, 0] = new SokobanSquare(false, false, false);
+            sokobanLevel[1, 1] = new SokobanSquare(false, false, false);
+            sokobanLevel[1, 2] = new SokobanSquare(true, false, false);
+            sokobanLevel[1, 3] = new SokobanSquare(true, false, false);
+            sokobanLevel[1, 4] = new SokobanSquare(false, false, false);
+            sokobanLevel[1, 5] = new SokobanSquare(false, false, false);
+            sokobanLevel[1, 6] = new SokobanSquare(true, false, false);
+            sokobanLevel[2, 0] = new SokobanSquare(true, false, false);
+            sokobanLevel[2, 1] = new SokobanSquare(true, false, false);
+            sokobanLevel[2, 2] = new SokobanSquare(true, false, false);
+            sokobanLevel[2, 3] = new SokobanSquare(false, false, false);
+            sokobanLevel[2, 4] = new SokobanSquare(false, false, true);
+            sokobanLevel[2, 5] = new SokobanSquare(false, false, false);
+            sokobanLevel[2, 6] = new SokobanSquare(true, false, false);
+            sokobanLevel[3, 0] = new SokobanSquare(true, false, false);
+            sokobanLevel[3, 1] = new SokobanSquare(false, false, false);
+            sokobanLevel[3, 2] = new SokobanSquare(false, false, false);
+            sokobanLevel[3, 3] = new SokobanSquare(false, false, false);
+            sokobanLevel[3, 4] = new SokobanSquare(false, false, true);
+            sokobanLevel[3, 5] = new SokobanSquare(false, false, false);
+            sokobanLevel[3, 6] = new SokobanSquare(true, false, false);
+            sokobanLevel[4, 0] = new SokobanSquare(false, false, false);
+            sokobanLevel[4, 1] = new SokobanSquare(false, false, false);
+            sokobanLevel[4, 2] = new SokobanSquare(false, false, false);
+            sokobanLevel[4, 3] = new SokobanSquare(false, false, false);
+            sokobanLevel[4, 4] = new SokobanSquare(false, false, true);
+            sokobanLevel[4, 5] = new SokobanSquare(false, true, false);
+            sokobanLevel[4, 6] = new SokobanSquare(true, false, false);
+            sokobanLevel[5, 0] = new SokobanSquare(true, false, false);
+            sokobanLevel[5, 1] = new SokobanSquare(true, false, false);
+            sokobanLevel[5, 2] = new SokobanSquare(true, false, false);
+            sokobanLevel[5, 3] = new SokobanSquare(true, false, false);
+            sokobanLevel[5, 4] = new SokobanSquare(true, false, false);
+            sokobanLevel[5, 5] = new SokobanSquare(false, true, false);
+            sokobanLevel[5, 6] = new SokobanSquare(true, false, false);
+            sokobanLevel[6, 0] = new SokobanSquare(false, false, false);
+            sokobanLevel[6, 1] = new SokobanSquare(false, false, false);
+            sokobanLevel[6, 2] = new SokobanSquare(false, false, false);
+            sokobanLevel[6, 3] = new SokobanSquare(false, false, false);
+            sokobanLevel[6, 4] = new SokobanSquare(true, false, false);
+            sokobanLevel[6, 5] = new SokobanSquare(false, true, false);
+            sokobanLevel[6, 6] = new SokobanSquare(true, false, false);
+            sokobanLevel[7, 0] = new SokobanSquare(false, false, false);
+            sokobanLevel[7, 1] = new SokobanSquare(false, false, false);
+            sokobanLevel[7, 2] = new SokobanSquare(false, false, false);
+            sokobanLevel[7, 3] = new SokobanSquare(false, false, false);
+            sokobanLevel[7, 4] = new SokobanSquare(true, false, false);
+            sokobanLevel[7, 5] = new SokobanSquare(true, false, false);
+            sokobanLevel[7, 6] = new SokobanSquare(true, false, false);
+        }
     }
 }
 

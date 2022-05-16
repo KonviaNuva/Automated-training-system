@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class SokobanInputManager : MonoBehaviour
 {
+    static public SokobanInputManager instance;
+
     void Start()
     {
+        instance = this;
+
         StartCoroutine("WaitForUser");
     }
 
