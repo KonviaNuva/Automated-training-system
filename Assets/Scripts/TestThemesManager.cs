@@ -12,6 +12,7 @@ public class TestThemesManager : MonoBehaviour
     public int pageNumber;
     public TMP_Text[] starTexts;
     public GameObject[] stars;
+    public GameObject[] starBackgrounds;
 
     void Start()
     {
@@ -31,12 +32,14 @@ public class TestThemesManager : MonoBehaviour
                 buttonText[i].text = IntersceneMemory.instance.themes[i + 3 * pageNumber];
                 button[i].GetComponent<ButtonSceneChangeScript>().themeIndex = i + 3 * pageNumber;
                 stars[i].SetActive(true);
+                starBackgrounds[i].SetActive(true);
                 starTexts[i].text = IntersceneMemory.instance.testHighscores[i + 3 * pageNumber].stars.ToString() + "/5";
             }
             else
             {
                 button[i].SetActive(false);
                 stars[i].SetActive(false);
+                starBackgrounds[i].SetActive(false);
                 starTexts[i].text = "";
             }
         }

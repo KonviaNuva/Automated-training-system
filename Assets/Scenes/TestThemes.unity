@@ -421,6 +421,10 @@ MonoBehaviour:
   - {fileID: 539799053}
   - {fileID: 1798405739}
   - {fileID: 379982281}
+  starBackgrounds:
+  - {fileID: 1487977878}
+  - {fileID: 1259497322}
+  - {fileID: 99321919}
 --- !u!4 &297600344
 Transform:
   m_ObjectHideFlags: 0
