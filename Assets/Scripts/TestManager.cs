@@ -11,7 +11,6 @@ public class TestManager : MonoBehaviour
     public TMP_Text questionText;
     public TMP_Text[] answerButtonTexts;
     public GameObject[] answerButtons;
-    public GameObject[] answerButtonBackgrounds;
 
     public int questionNumber = 5;
     public Question[] questions;
@@ -49,13 +48,11 @@ public class TestManager : MonoBehaviour
             if (activeQuestion.answers.Length >= i + 1)
             {
                 answerButtons[i].SetActive(true);
-                answerButtonBackgrounds[i].SetActive(true);
                 answerButtonTexts[i].text = activeQuestion.answers[i].answerText;
             }
             else
             {
                 answerButtons[i].SetActive(false);
-                answerButtonBackgrounds[i].SetActive(false);
             }
         }
     }
