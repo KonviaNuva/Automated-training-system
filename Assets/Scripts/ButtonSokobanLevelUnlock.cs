@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class ButtonSokobanLevelUnlock : MonoBehaviour
 {
-    public int levelNumber;
+    public int backgroundNumber;
 
     private void OnMouseDown()
     {
-        SokobanLevelsManager.instance.TryToUnlockLevel(levelNumber);
+        ShopManager.instance.TryToUnlockBackground(backgroundNumber);
     }
 }

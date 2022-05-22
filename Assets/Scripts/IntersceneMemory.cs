@@ -14,7 +14,7 @@ public class IntersceneMemory : MonoBehaviour
     public testHighscore[] testHighscores;
     public string[] themes;
     public int backgroundNumber = 0;
-    public bool[] areSokobanLevelsUnlocked;
+    public bool[] areBackgroundsUnlocked;
 
     void Start()
     {
@@ -22,7 +22,7 @@ public class IntersceneMemory : MonoBehaviour
         DontDestroyOnLoad(transform.gameObject);
         SceneManager.LoadScene("MainMenu");
 
-        areSokobanLevelsUnlocked = new bool[] { false, false, false };
+        areBackgroundsUnlocked = new bool[] { false, false, false };
         themes = new string[]
         {
             "ќсновные пон€ти€ в области пожарной безопасности",
@@ -39,6 +39,8 @@ public class IntersceneMemory : MonoBehaviour
         }
 
         LoadUserData();
+
+        coins = 1000;
     }
 
     public void SaveUserData()
@@ -53,7 +55,7 @@ public class IntersceneMemory : MonoBehaviour
             data.stars[i] = testHighscores[i].stars;
         }
         data.saveBackgroundNumber = backgroundNumber;
-        data.saveAreSokobanLevelsUnlocked = areSokobanLevelsUnlocked;
+        data.saveAreBackgroundsUnlocked = areBackgroundsUnlocked;
 
         string json = JsonUtility.ToJson(data);
 
@@ -75,7 +77,7 @@ public class IntersceneMemory : MonoBehaviour
                 testHighscores[i].stars = data.stars[i];
             }
             backgroundNumber = data.saveBackgroundNumber;
-            areSokobanLevelsUnlocked = data.saveAreSokobanLevelsUnlocked;
+            areBackgroundsUnlocked = data.saveAreBackgroundsUnlocked;
 
             BackgroundManager.instance.SetBackground(backgroundNumber);
         }
@@ -104,5 +106,5 @@ class SaveData
     public int saveTotalCoins;
     public int[] stars;
     public int saveBackgroundNumber;
-    public bool[] saveAreSokobanLevelsUnlocked;
+    public bool[] saveAreBackgroundsUnlocked;
 }
