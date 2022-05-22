@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ButtonSokobanLevelUnlock : MonoBehaviour
+public class ButtonBackgroundUnlock : MonoBehaviour
 {
     public int backgroundNumber;
 
