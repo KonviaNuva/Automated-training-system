@@ -39,8 +39,6 @@ public class IntersceneMemory : MonoBehaviour
         }
 
         LoadUserData();
-
-        //coins = 1000;
     }
 
     public void SaveUserData()

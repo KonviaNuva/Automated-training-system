@@ -7,18 +7,12 @@ public class RewardManager : MonoBehaviour
 {
     public GameObject[] cups;
     public TMP_Text[] cupTexts;
-    public GameObject[] buttons;
 
     private void Start()
     {
         for (int i = 0; i < cups.Length; i++)
         {
             cups[i].SetActive(false);
-        }
-
-        for (int i = 1; i < buttons.Length; i++)
-        {
-            buttons[i].SetActive(false);
         }
 
         for (int i = 0; i < 4; i++)
@@ -36,14 +30,6 @@ public class RewardManager : MonoBehaviour
             if (IntersceneMemory.instance.totalCoins >= 100 + (i - 4) * 200)
             {
                 cups[i].SetActive(true);
-                if (i == 5)
-                {
-                    buttons[2].SetActive(true);
-                }
-                if (i == 6)
-                {
-                    buttons[3].SetActive(true);
-                }
             }
             cupTexts[i].text = "Заработано " + IntersceneMemory.instance.totalCoins + "/" + (100 + (i - 4) * 200) 
                 + " монет";
@@ -60,10 +46,6 @@ public class RewardManager : MonoBehaviour
             if (sumStars >= (10 + (i - 7) * 5))
             {
                 cups[i].SetActive(true);
-                if (i == 7)
-                {
-                    buttons[1].SetActive(true);
-                }
             }
             cupTexts[i].text = "Набрано суммарно " + sumStars + "/" + (10 + (i - 7) * 5)
                 + " звезд";
