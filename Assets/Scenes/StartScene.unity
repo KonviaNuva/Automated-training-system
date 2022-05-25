@@ -257,7 +257,7 @@ MonoBehaviour:
   totalCoins: 0
   themes: []
   backgroundNumber: 0
-  areSokobanLevelsUnlocked: 
+  areBackgroundsUnlocked: 
 --- !u!4 &851987142
 Transform:
   m_ObjectHideFlags: 0

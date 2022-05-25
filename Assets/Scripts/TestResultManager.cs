@@ -11,6 +11,8 @@ public class TestResultManager : MonoBehaviour
     public TMP_Text starsCountText;
     public TMP_Text coinsCountText;
 
+    public GameObject congratsText;
+
     public int stars;
     public int coins;
 
@@ -18,6 +20,11 @@ public class TestResultManager : MonoBehaviour
     {
         stars = (int)((TestManager.instance.score / TestManager.instance.questions.Length) * 5);
         coins = (int)TestManager.instance.score * 10;
+
+        if (stars == 5)
+        {
+            congratsText.SetActive(true);
+        }
 
         IntersceneMemory.instance.coins += this.coins;
         IntersceneMemory.instance.totalCoins += this.coins;
