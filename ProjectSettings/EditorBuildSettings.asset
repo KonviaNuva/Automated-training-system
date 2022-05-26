@@ -36,6 +36,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Rewards/Shop.unity
     guid: 33acb4ad5d421264a9a5ecf3638388b5
   - enabled: 1
-    path: Assets/Scenes/Shmup/SampleScene.unity
+    path: Assets/Scenes/Shmup/Shmup.unity
     guid: 7d374a7f94314e84280926b10dc450fc
   m_configObjects: {}

@@ -2,17 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Threading;
+using UnityEngine.SceneManagement;
 
 public class GameExit : MonoBehaviour
 {
     public AudioSource musicPlayer;
     public AudioClip okSound;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -27,6 +22,6 @@ public class GameExit : MonoBehaviour
     {
         musicPlayer.PlayOneShot(okSound);
         Thread.Sleep(500);
-        Application.Quit();
+        SceneManager.LoadScene("MainMenu");
     }
 }

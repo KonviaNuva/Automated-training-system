@@ -69,7 +69,7 @@ public class DataManager : MonoBehaviour
 
         string json = JsonUtility.ToJson(data);
 
-        File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
+        File.WriteAllText(Application.persistentDataPath + "/shmupsavefile.json", json);
     }
 
     public static void SetName()
