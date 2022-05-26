@@ -50,7 +50,7 @@ public class DataManager : MonoBehaviour
 
     public static void LoadBestScore()
     {
-        string path = Application.persistentDataPath + "/savefile.json";
+        string path = Application.persistentDataPath + "/shmupsavefile.json";
         if (File.Exists(path))
         {
             string json = File.ReadAllText(path);
