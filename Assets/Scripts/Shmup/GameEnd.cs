@@ -14,6 +14,8 @@ public class GameEnd : MonoBehaviour
     private GameManager gamemanager;
     private HeroController heroController;
 
+    private int continuePrice = 20;
+
     private void Start()
     {
         gamemanager = FindObjectOfType<GameManager>();
@@ -33,12 +35,17 @@ public class GameEnd : MonoBehaviour
     }
 
     public void ContinueGame()
-    {
-        gamemanager.gameIsOver = false;
-        heroController.gameObject.SetActive(true);
-        heroController.health = 5;
-        gameEndMenu.SetActive(false);
-        //отключить геймовер, вернуть на экран персонажа и увеличить жизни до 5. и убрать меню конца игры
-        //потом еще надо будет денег снимать за это
+    {        
+        if (IntersceneMemory.instance.coins >= continuePrice)
+        {
+            //отключить геймовер, вернуть на экран персонажа и увеличить жизни до 5. и убрать меню конца игры
+            gamemanager.gameIsOver = false;
+            heroController.gameObject.SetActive(true);
+            heroController.health = 5;
+            gameEndMenu.SetActive(false);
+            //потом еще надо будет денег снимать за это. и цену наращивать.
+            IntersceneMemory.instance.coins -= continuePrice;
+            continuePrice += 10;
+        }        
     }
 }
