@@ -139,7 +139,7 @@ public class HeroController : MonoBehaviour
                 DataManager.SaveBestScore();
 
                 gamemanager.gameIsOver = true;
-                Destroy(gameObject);
+                this.gameObject.SetActive(false);
             }
 
             Renderer thisRenderer = GetComponent<Renderer>();
