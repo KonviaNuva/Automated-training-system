@@ -30,14 +30,14 @@ public class GameManager : MonoBehaviour
             FindObjectOfType<GameEnd>().ShowEndMenu();
         }
 
-        scoreText.text = "Score: " + score;
+        scoreText.text = "Счет: " + score;
         if (gameIsOver == false)
         {
-            hpText.text = "Lives: " + FindObjectOfType<HeroController>().health;
+            hpText.text = "Жизни: " + FindObjectOfType<HeroController>().health;
         }
         else
         {
-            hpText.text = "Lives: " + 0;
+            hpText.text = "Жизни: " + 0;
         }
         bestScoreText.text = DataManager.bestPlayerName + ": " + DataManager.bestScore;
 
@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
             enemyCount = FindObjectsOfType<EnemyBehavior>().Length;
         }
 
-        waveText.text = "Wave: " + waveCount;
+        waveText.text = "Волна: " + waveCount;
     }
 
     void SpawnNewWave(int enemiesToSpawn)

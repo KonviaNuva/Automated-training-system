@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HeroController : MonoBehaviour
 {
-    public float health = 10;
+    public float health;
 
     private bool isFocused = false;
     public GameObject bullet;
