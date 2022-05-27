@@ -2415,6 +2415,7 @@ MonoBehaviour:
   gameEndMenu: {fileID: 660446830}
   musicPlayer: {fileID: 519420030}
   okSound: {fileID: 8300000, guid: 3af53112686d3b6478b67a348621d248, type: 3}
+  continueButtonText: {fileID: 1809154806}
 --- !u!1 &1365621063
 GameObject:
   m_ObjectHideFlags: 0
@@ -3040,8 +3041,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

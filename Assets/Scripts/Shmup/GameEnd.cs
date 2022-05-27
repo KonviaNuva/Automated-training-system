@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Threading;
+using TMPro;
 
 public class GameEnd : MonoBehaviour
 {
     public GameObject gameEndMenu;
-
+    
     public AudioSource musicPlayer;
-    public AudioClip okSound;
+    public AudioClip okSound; 
+    public TMP_Text continueButtonText;
 
     private GameManager gamemanager;
     private HeroController heroController;
-
+    
     private int continuePrice = 20;
 
     private void Start()
@@ -25,6 +27,7 @@ public class GameEnd : MonoBehaviour
     public void ShowEndMenu()
     {
         gameEndMenu.SetActive(true);
+        continueButtonText.text = "Продолжить (" + continuePrice + "/" + IntersceneMemory.instance.coins + " монет)";
     }
 
     public void RestartGame()
@@ -43,9 +46,10 @@ public class GameEnd : MonoBehaviour
             heroController.gameObject.SetActive(true);
             heroController.health = 5;
             gameEndMenu.SetActive(false);
-            //потом еще надо будет денег снимать за это. и цену наращивать.
+            //потом еще надо будет денег снимать за это. и цену наращивать. и денюжку сейвить
             IntersceneMemory.instance.coins -= continuePrice;
             continuePrice += 10;
+            IntersceneMemory.instance.SaveUserData();
         }        
     }
 }
